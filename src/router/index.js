@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Screen from '../views/screen.vue'
+import BigScreenShow from '../components/BigScreenShow'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     // redirect: '/screen',
-    component: Screen
+    component: BigScreenShow
   }
 ]
 

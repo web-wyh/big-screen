@@ -1,20 +1,111 @@
 <template>
-  <div>
-    <!-- <dv-full-screen-container>content</dv-full-screen-container> -->
-    content
+  <div class="topNav">
+    <div class="footSty">
+      家&nbsp;聊&nbsp;IM&nbsp;数&nbsp;据&nbsp;大&nbsp;屏
+    </div>
+    <div class="weather">
+      <span>{{
+        `${this.weatherPosition}天气：${this.weather.weather} ${this.weather.temperature}℃`
+      }}</span>
+    </div>
+    <div class="date">{{ date }}</div>
   </div>
 </template>
 <script>
+import $API from '../../http/api'
+import moment from 'moment'
 export default {
   name: 'BigScreenScreen',
 
   data() {
-    return {}
+    return {
+      weather: {},
+      weatherPosition: '',
+      date: ''
+    }
   },
 
-  mounted() {},
+  mounted() {
+    this.weatherRequest()
+    this.getEveryDayDate()
+  },
 
-  methods: {}
+  methods: {
+    weatherRequest() {
+      this.$axios({
+        methods: 'get',
+        url: $API.weatherGeographicPosition,
+        params: {
+          key: '3542a10127628dad9dce5f03afa6f175'
+        }
+      })
+        .then((res) => {
+          const { data } = res
+          this.weatherPosition = data.city
+          this.$axios({
+            url: $API.weatherData,
+            methods: 'get',
+            params: {
+              key: '3542a10127628dad9dce5f03afa6f175',
+              city: `${data.adcode}`
+            }
+          }).then((res) => {
+            const { lives } = res.data
+
+            this.weather = lives[0]
+            console.log(this.weather, this.weatherPosition)
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getEveryDayDate() {
+      const day = new Date()
+      setInterval(() => {
+        this.date = `${day.getFullYear()}-${
+          day.getMonth() + 1
+        }-${day.getDate()} ${moment().format('h:mm:ss')}`
+      }, 1000)
+    }
+  }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.topNav {
+  width: '100%';
+  height: 80px;
+  background: url(../../assets/img/nav.png) no-repeat;
+  background-position: -10px -40px;
+  position: relative;
+}
+.footSty {
+  position: absolute;
+  font-style: italic;
+  font-size: 35px;
+  color: #fff;
+  text-shadow: 0 0 50px #4ba1e0;
+  left: 42%;
+  top: 12%;
+  cursor: default;
+}
+.weather {
+  color: #fff;
+  font-size: 16px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+.date {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  font-size: 16px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+</style>

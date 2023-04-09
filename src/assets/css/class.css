@@ -3,3 +3,6 @@ body,
   margin: 0;
   padding: 0;
 }
+#dv-full-screen-container {
+  background-color: #001a2f;
+}

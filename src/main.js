@@ -13,9 +13,9 @@ import dataV from '@jiaminghi/data-view'
 Vue.use(dataV)
 
 import './assets/css/class.css'
-// 声明全局变量 保存上传文件的前缀
-// import BaseUrl from './http/BaseUrl'
-// Vue.prototype.UPLOADURL = BaseUrl.UPLOADURL
+
+import $axios from 'axios'
+Vue.prototype.$axios = $axios
 
 Vue.config.productionTip = false
 
