@@ -12,11 +12,7 @@ export default {
     return {
       dataList: [
         { value: 112, name: '历下区 ' },
-        { value: 53, name: '历城区 ' },
-        { value: 112, name: '槐荫区 ' },
-        { value: 53, name: '章丘区 ' },
-        { value: 74, name: '天桥区 ' },
-        { value: 50, name: '市中区 ' }
+        { value: 53, name: '历城区 ' }
       ],
       chart: null,
       dataArr: []
@@ -34,20 +30,11 @@ export default {
       this.dataList.forEach((item) => {
         this.dataArr.push({
           value: item.value,
-          name: `${item.name} ${item.value}吨 ${
-            (item.value / max).toFixed(2) * 100
-          }%`
+          name: item.name
         })
       })
       this.chart.setOption({
-        color: [
-          '#1994ff',
-          '#f48483',
-          '#3fcdbd',
-          '#8073c5',
-          '#00d7e9',
-          '#ffc700'
-        ],
+        color: ['#1994ff', '#f48483'],
         tooltip: {
           trigger: 'item'
         },
@@ -61,16 +48,16 @@ export default {
           itemGap: 10,
           itemWidth: 5,
           itemHeight: 5,
-          orient: 'vertical',
-          right: '10%',
+          orient: 'horizontal',
+          left: 'center',
           top: '0%'
         },
         series: [
           {
             name: '济南市',
             type: 'pie',
-            right: '34%',
-            top: '-5%',
+            right: '0%',
+            top: '15%',
             bottom: '5%',
             radius: ['50%', '80%'],
             label: {
@@ -91,6 +78,6 @@ export default {
 <style scoped lang="scss">
 #pie1 {
   height: 150px;
-  width: 480px;
+  width: 230px;
 }
 </style>

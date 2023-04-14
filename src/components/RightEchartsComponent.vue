@@ -2,7 +2,7 @@
   <div class="left_ech_1">
     <div class="allBox">
       <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
-      <dv-border-box-1>
+      <dv-border-box-8>
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -20,13 +20,13 @@
             </div>
           </div>
           <div style="width: 100%; height: 150px">
-            <!-- <shadow-broken-line></shadow-broken-line> -->
-            <shrink-table></shrink-table>
+            <!-- <broken-line></broken-line> -->
+            <histogram-echarts></histogram-echarts>
           </div>
         </div>
-      </dv-border-box-1>
+      </dv-border-box-8>
 
-      <!-- <dv-border-box-1>
+      <dv-border-box-8>
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -40,14 +40,14 @@
                 font-weight: bolder;
               "
             >
-              222
+              111
             </div>
           </div>
           <div style="width: 100%; height: 150px">
-            <bar-line></bar-line>
+            <broken-line></broken-line>
           </div>
         </div>
-      </dv-border-box-1> -->
+      </dv-border-box-8>
 
       <dv-border-box-8>
         <div class="box" style="margin: 14px 0 20px 17px">
@@ -66,69 +66,21 @@
               333
             </div>
           </div>
-          <div style="width: 100%; height: 150px">
-            <histogram-echarts></histogram-echarts>
+
+          <div style="width: 100%; height: 150px; display: flex">
+            <div style="width: 50%"><broken-line1></broken-line1></div>
+            <div style="width: 50%"><broken-line2></broken-line2></div>
           </div>
         </div>
       </dv-border-box-8>
 
       <!-- <dv-scroll-board :config="config" style="width: 480px; height: 160px" /> -->
-      <dv-border-box-6>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              444
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <div class="bubble allLoadRate">
-              <div style="width: 45px; margin: 10px 0 0 23px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">105</span>
-                <span>%</span>
-                全市总负荷率
-              </div>
-            </div>
-            <div class="bubble centralCity">
-              <div style="width: 49px; margin: 7px 0 0 9px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">141</span>
-                <span>%</span>
-                历下区
-              </div>
-            </div>
-            <div class="bubble dongxiLake">
-              <div style="width: 38px; margin: 7px 0 0 12px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">50</span>
-                <span>%</span>
-                大明湖
-              </div>
-            </div>
-            <div class="bubble jingkaiDistrict">
-              <div style="width: 38px; margin: 7px 0 0 12px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">42</span>
-                <span>%</span>
-                历城区
-              </div>
-            </div>
-            <div class="bubble xinzhouDistrict">
-              <div style="width: 38px; margin: 7px 0 0 10px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">77</span>
-                <span>%</span>
-                槐荫区
-              </div>
-            </div>
-          </div>
+      <dv-border-box-8 style="height: 360px">
+        <div style="height: 360px; width: 100%">
+          <scroll-table></scroll-table>
         </div>
-      </dv-border-box-6>
+        <!--  -->
+      </dv-border-box-8>
     </div>
   </div>
 </template>
@@ -136,18 +88,24 @@
 <script>
 // import * as echarts from 'echarts'
 import ShrinkTable from './ShrinkTable'
-import ShadowBrokenLine from './ShadowBrokenLine'
+import brokenLine from './BrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
 import HistogramEcharts from './HistogramEcharts'
+import BrokenTable from './BrokenTable'
+import brokenLine1 from './BrokenLine1'
+import brokenLine2 from './BrokenLine2'
 
 export default {
   components: {
     ShrinkTable,
-    ShadowBrokenLine,
+    brokenLine,
     BarLine,
     ScrollTable,
-    HistogramEcharts
+    HistogramEcharts,
+    BrokenTable,
+    brokenLine1,
+    brokenLine2
   },
   data() {
     return {}

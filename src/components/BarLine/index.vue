@@ -41,8 +41,8 @@ export default {
         },
         grid: {
           top: '3%',
-          right: '25%',
-          left: '0%',
+          right: '35%',
+          left: '-10%',
           bottom: '2%',
           containLabel: true
         },
@@ -246,7 +246,7 @@ export default {
 
 <style lang="scss" scoped>
 #Bar {
-  width: 480px;
+  width: 230px;
   height: 150px;
   z-index: 9999;
 }

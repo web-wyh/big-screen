@@ -4,12 +4,21 @@ body,
   padding: 0;
 }
 #dv-full-screen-container {
-  /* background-color: #001a2f; */
+  /* background-color: rgba(17, 28, 53, 0.8); */
+  /* 273e56 111c35  17 28 53*/
   background-image: radial-gradient(
     ellipse farthest-corner at center center,
-    #213e75 0,
-    #456da6 100%
+    #273e56 0,
+    #111c35 100%
   );
+}
+
+.dv-scroll-board .rows .row-item {
+  height: auto !important;
+  font-size: 12px;
+}
+.dv-decoration-2 {
+  margin-bottom: 20px;
 }
 .dv-border-box-9 {
   /* background-color: rgba(1, 37, 70, 0.5); */

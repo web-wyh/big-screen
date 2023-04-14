@@ -2,84 +2,9 @@
   <div class="left_ech_1">
     <div class="allBox">
       <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
-      <dv-border-box-9>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              111
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <shadow-broken-line></shadow-broken-line>
-          </div>
-        </div>
-      </dv-border-box-9>
+      <!-- <dv-decoration-2 style="width: 480px; height: 5px" /> -->
 
       <dv-border-box-1>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              222
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <bar-line></bar-line>
-          </div>
-        </div>
-      </dv-border-box-1>
-
-      <!-- <dv-border-box-8>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              333
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <shrink-table></shrink-table>
-          </div>
-        </div>
-      </dv-border-box-8> -->
-
-      <dv-border-box-8 style="height: 360px">
-        <div style="height: 360px; width: 100%">
-          <scroll-table></scroll-table>
-        </div>
-        <!--  -->
-      </dv-border-box-8>
-
-      <!-- <dv-scroll-board :config="config" style="width: 480px; height: 160px" /> -->
-      <!-- <dv-border-box-12>
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -134,7 +59,54 @@
             </div>
           </div>
         </div>
-      </dv-border-box-12> -->
+      </dv-border-box-1>
+
+      <dv-border-box-1>
+        <div class="box" style="margin: 14px 0 20px 17px">
+          <div class="box-logo" style="width: 100%; height: 26px">
+            <div style="width: 22px; height: 26px">
+              <div class="logo-y"></div>
+            </div>
+            <div
+              style="
+                color: #00ccff;
+                font-size: 15px;
+                line-height: 26px;
+                font-weight: bolder;
+              "
+            >
+              222
+            </div>
+          </div>
+          <div style="width: 100%; height: 150px; display: flex">
+            <div style="width: 50%"><shrink-table></shrink-table></div>
+            <div style="width: 50%"><bar-line></bar-line></div>
+          </div>
+        </div>
+      </dv-border-box-1>
+
+      <dv-border-box-1>
+        <div class="box" style="margin: 14px 0 20px 17px">
+          <div class="box-logo" style="width: 100%; height: 26px">
+            <div style="width: 22px; height: 26px">
+              <div class="logo-y"></div>
+            </div>
+            <div
+              style="
+                color: #00ccff;
+                font-size: 15px;
+                line-height: 26px;
+                font-weight: bolder;
+              "
+            >
+              111
+            </div>
+          </div>
+          <div style="width: 100%; height: 150px">
+            <shadow-broken-line></shadow-broken-line>
+          </div>
+        </div>
+      </dv-border-box-1>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="shadowBrokenLine"></div>
+    <div id="brokenLine1"></div>
   </div>
 </template>
 
@@ -13,20 +13,7 @@ export default {
   data() {
     return {
       chart: null,
-      data1: [320, 132, 101, 134, 90, 230, 210],
-      data2: [420, 182, 191, 234, 290, 330, 310],
-      data3: [350, 232, 201, 154, 190, 330, 410]
-    }
-  },
-
-  mounted() {
-    this.initChart()
-  },
-
-  methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById('shadowBrokenLine'))
-      this.chart.setOption({
+      chartOption: {
         tooltip: {
           trigger: 'axis'
         },
@@ -40,12 +27,11 @@ export default {
             fontSize: 10
           },
           itemGap: 8,
-          itemWidth: 18,
-          data: ['1', '2', '3']
+          itemWidth: 18
         },
         grid: {
           top: '26%',
-          left: '10%',
+          left: '15%',
           bottom: '18%',
           right: '9%'
         },
@@ -74,7 +60,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['01日', '02日', '03日', '04日', '05日', '06日']
           }
         ],
         yAxis: [
@@ -82,7 +68,7 @@ export default {
             nameTextStyle: {
               show: false
             },
-            // splitNumber: 2,
+            min: 200,
             interval: 100,
             splitLine: {
               show: false,
@@ -107,43 +93,87 @@ export default {
         ],
         series: [
           {
-            name: '1',
-            symbol: 'circle',
+            name: '本月',
             type: 'line',
-            // stack: 'Total',
-            itemStyle: {
-              color: 'rgba(176, 238, 241, 1)'
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 5,
+            lineStyle: {
+              normal: {
+                width: 2,
+                color: 'rgba(95, 191, 251, 1)' // 线条颜色
+              },
+              borderColor: 'rgba(0,0,0,.4)'
             },
-            data: this.data1
-          },
-          {
-            name: '2',
-            symbol: 'circle',
-            type: 'line',
             itemStyle: {
               color: 'rgba(95, 191, 251, 1)'
             },
-            data: this.data2
+            tooltip: {
+              show: true
+            },
+            data: ['410', '220', '430', '245', '550', '260']
           },
           {
-            name: '3',
-            symbol: 'circle',
+            name: '上月',
             type: 'line',
-            itemStyle: {
-              color: 'rgba(42, 235, 232, 1)'
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 5,
+            lineStyle: {
+              normal: {
+                width: 2,
+                color: 'rgba(45,131,234,1)' // 线条颜色
+              }
             },
-            data: this.data3
+            itemStyle: {
+              color: 'rgba(45,131,234,1)'
+            },
+            tooltip: {
+              show: true
+            },
+            data: ['500', '300', '272', '235', '280', '260']
+          },
+          {
+            name: '去年同期',
+            type: 'line',
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 5,
+            lineStyle: {
+              normal: {
+                width: 2,
+                color: 'rgba(176, 238, 241, 1)' // 线条颜色
+              }
+            },
+            itemStyle: {
+              color: 'rgba(176, 238, 241, 1)'
+            },
+            tooltip: {
+              show: true
+            },
+            data: ['320', '310', '222', '225', '250', '320']
           }
         ]
-      })
+      }
+    }
+  },
+
+  mounted() {
+    this.initChart()
+  },
+
+  methods: {
+    initChart() {
+      this.chart = echarts.init(document.getElementById('brokenLine1'))
+      this.chart.setOption(this.chartOption)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-#shadowBrokenLine {
-  width: 450px;
+#brokenLine1 {
+  width: 230px;
   height: 150px;
   z-index: 9999;
 }
