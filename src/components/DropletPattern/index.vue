@@ -98,9 +98,7 @@ export default {
     return {}
   },
 
-  mounted() {
-    this.initChart()
-  },
+  mounted() {},
 
   methods: {}
 }

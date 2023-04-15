@@ -19,7 +19,7 @@ export default {
 
   methods: {
     initChart() {
-      let uploadedDataURL = '/assets/img/data-1640589484383-TgctXdaF8.png'
+      // let uploadedDataURL = '/assets/img/data-1640589484383-TgctXdaF8.png'
       let mapName = 'china'
       let data = [
         { name: '北京', value: 4075 },
@@ -376,7 +376,6 @@ export default {
               return {
                 type: 'image',
                 style: {
-                  image: uploadedDataURL, // 自定义的图片地址
                   x:
                     api.coord([
                       pointData[params.dataIndex].value[0],
