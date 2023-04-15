@@ -88,7 +88,7 @@ export default {
   font-size: 35px;
   color: #fff;
   text-shadow: 0 0 50px #4ba1e0;
-  left: 39%;
+  left: 41%;
   top: 12%;
   cursor: default;
 }
