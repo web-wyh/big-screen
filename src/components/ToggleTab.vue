@@ -1,64 +1,8 @@
 <template>
   <div class="left_ech_1">
     <div class="allBox">
-      <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
-      <!-- <dv-decoration-2 style="width: 480px; height: 5px" /> -->
-
-      <dv-border-box-1>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              444
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <div class="bubble allLoadRate">
-              <div style="width: 45px; margin: 10px 0 0 23px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">105</span>
-                <span>%</span>
-                全市总负荷率
-              </div>
-            </div>
-            <div class="bubble centralCity">
-              <div style="width: 49px; margin: 7px 0 0 9px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">141</span>
-                <span>%</span>
-                历下区
-              </div>
-            </div>
-            <div class="bubble dongxiLake">
-              <div style="width: 38px; margin: 7px 0 0 12px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">50</span>
-                <span>%</span>
-                大明湖
-              </div>
-            </div>
-            <div class="bubble jingkaiDistrict">
-              <div style="width: 38px; margin: 7px 0 0 12px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">42</span>
-                <span>%</span>
-                历城区
-              </div>
-            </div>
-            <div class="bubble xinzhouDistrict">
-              <div style="width: 38px; margin: 7px 0 0 10px; font-size: 12px">
-                <span style="font-size: 17px; color: #8dcbff">77</span>
-                <span>%</span>
-                槐荫区
-              </div>
-            </div>
-          </div>
-        </div>
+      <dv-border-box-1 style="height: 280px">
+        <div style="height: 280px"><droplet-pattern></droplet-pattern></div>
       </dv-border-box-1>
 
       <dv-border-box-1>
@@ -117,13 +61,15 @@ import ShrinkTable from './ShrinkTable'
 import ShadowBrokenLine from './ShadowBrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
+import DropletPattern from './DropletPattern'
 
 export default {
   components: {
     ShrinkTable,
     ShadowBrokenLine,
     BarLine,
-    ScrollTable
+    ScrollTable,
+    DropletPattern
   },
   data() {
     return {}
@@ -152,7 +98,7 @@ export default {
       position: relative;
       border-radius: 10px;
       width: 440px;
-      height: 176px;
+
       background-color: rgba(1, 37, 70, 0.3);
 
       .box-logo {

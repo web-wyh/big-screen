@@ -6,11 +6,13 @@ body,
 #dv-full-screen-container {
   /* background-color: rgba(17, 28, 53, 0.8); */
   /* 273e56 111c35  17 28 53*/
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     ellipse farthest-corner at center center,
     #273e56 0,
     #111c35 100%
-  );
+  ); */
+  background: url(../img/bg.webp) no-repeat;
+  background-size: cover;
 }
 
 .dv-scroll-board .rows .row-item {
@@ -26,7 +28,6 @@ body,
   width: 470px;
 }
 .dv-border-box-1 {
-  /* background-color: rgba(1, 37, 70, 0.5); */
   margin-bottom: 20px;
   width: 470px;
 }

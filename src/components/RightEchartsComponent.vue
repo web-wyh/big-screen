@@ -2,27 +2,9 @@
   <div class="left_ech_1">
     <div class="allBox">
       <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
-      <dv-border-box-8>
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              111
-            </div>
-          </div>
-          <div style="width: 100%; height: 150px">
-            <!-- <broken-line></broken-line> -->
-            <histogram-echarts></histogram-echarts>
-          </div>
+      <dv-border-box-8 style="height: 280px">
+        <div style="height: 280px; width: 100%">
+          <scroll-table></scroll-table>
         </div>
       </dv-border-box-8>
 
@@ -75,9 +57,27 @@
       </dv-border-box-8>
 
       <!-- <dv-scroll-board :config="config" style="width: 480px; height: 160px" /> -->
-      <dv-border-box-8 style="height: 360px">
-        <div style="height: 360px; width: 100%">
-          <scroll-table></scroll-table>
+      <dv-border-box-8>
+        <div class="box" style="margin: 14px 0 20px 17px">
+          <div class="box-logo" style="width: 100%; height: 26px">
+            <div style="width: 22px; height: 26px">
+              <div class="logo-y"></div>
+            </div>
+            <div
+              style="
+                color: #00ccff;
+                font-size: 15px;
+                line-height: 26px;
+                font-weight: bolder;
+              "
+            >
+              111
+            </div>
+          </div>
+          <div style="width: 100%; height: 150px">
+            <!-- <broken-line></broken-line> -->
+            <histogram-echarts></histogram-echarts>
+          </div>
         </div>
         <!--  -->
       </dv-border-box-8>

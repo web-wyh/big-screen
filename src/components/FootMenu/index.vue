@@ -1,29 +1,23 @@
 <template>
-  <div class="scrollTable">
-    <div class="header">
-      <div class="header1">
-        <div class="box-logo" style="width: 100%; height: 26px">
-          <div style="width: 22px; height: 26px">
-            <div class="logo-y"></div>
-          </div>
-          <div
-            style="
-              color: #00ccff;
-              font-size: 15px;
-              line-height: 26px;
-              font-weight: bolder;
-            "
-          >
-            协议服务监控
-          </div>
+  <div class="FootScrollTable">
+    <div class="foot">
+      <div class="box-logo" style="width: 100%; height: 26px">
+        <div style="width: 22px; height: 26px">
+          <div class="logo-y"></div>
+        </div>
+        <div
+          style="
+            color: #00ccff;
+            font-size: 15px;
+            line-height: 26px;
+            font-weight: bolder;
+          "
+        >
+          预警信息
         </div>
       </div>
-      <div class="header2">
-        <div class="header2_1">服务端ip:{{ tableHeaderInfo[0] }}</div>
-        <div class="header2_2">服务端ip:172.16.0.1</div>
-      </div>
     </div>
-    <dv-scroll-board :config="config" style="width: 440px; height: 180px" />
+    <dv-scroll-board :config="config" style="width: 640px; height: 140px" />
   </div>
 </template>
 <script>
@@ -41,25 +35,12 @@ export default {
           ['系统端口', '系统端口'],
           ['关闭连接数', '关闭连接数'],
           ['处理packet平均耗时', '处理packet平均耗时'],
-          ['处理消息包耗时', '处理消息包耗时'],
-          ['处理了的消息包数', '处理了的消息包数'],
-          ['监控id', '监控id'],
-          ['longtime', 'longtime'],
-          ['在线用户数', '在线用户数'],
-          ['平均每次TCP接收到的业务包数', '平均每次TCP接收到的业务包数'],
-          ['接收到消息字节数', '接收到消息字节数'],
-          ['接收到消息包', '接收到消息包'],
-          ['本IP已接收了多少次TCP数据包', '本IP已接收了多少次TCP数据包'],
-          ['发送了的字节数', '发送了的字节数'],
-          ['发送了的消息包数', '发送了的消息包数'],
-          ['服务端ip', '服务端ip'],
-          ['服务端端口', '服务端端口'],
-          ['采集时间', '采集时间']
+          ['数据显示次数', '数据显示次数']
         ],
-        rowNum: 8,
-        oddRowBGC: '#273e56',
-        evenRowBGC: '#111c35',
-        waitTime: 1000000,
+        rowNum: 4,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
         align: ['center', 'center']
       },
       /**
@@ -140,7 +121,7 @@ export default {
   },
   created() {},
   mounted() {
-    this.getData()
+    // this.getData()
   },
 
   methods: {
@@ -195,39 +176,15 @@ export default {
 }
 </script>
 <style scoped>
-.scrollTable {
-  width: 480px;
-  height: 280px;
-  margin: 10px 0 0 15px;
+.FootScrollTable {
+  width: 640px;
+  height: 160px;
+  position: fixed;
+  bottom: 210px;
+  left: 30%;
 }
-.header {
-  width: 440px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
+.foot {
   background-color: rgba(17, 28, 53, 0.6);
-}
-.header1 {
-  width: 100%;
-  height: 50%;
-  /* background-color: #000; */
-}
-.header2 {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  text-align: center;
-  color: #fff;
-  font-size: 13px;
-  line-height: 40px;
-}
-.header2_1 {
-  width: 50%;
-  height: 100%;
-}
-.header2_2 {
-  width: 50%;
-  height: 100%;
 }
 .box-logo {
   display: flex;
@@ -241,11 +198,4 @@ export default {
   box-shadow: 0 0px 12px 3px #00ccff;
   margin: 10px 0 0 7.5px;
 }
-/*
-.header1 .header1_2 {
-  background: red;
-}
-.header1 .header1_3 {
-  background: blue;
-} */
 </style>

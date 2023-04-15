@@ -1,91 +1,3 @@
-<!--
-
-
-   <template>
-  <div id="container"></div>
-</template>
-<script>
-import * as THREE from 'three'
-import mapJson from '../../chinaMap/china.json'
-let scene = null,
-  camera = null,
-  renderer = null,
-  mesh = null,
-  shape = null
-
-export default {
-  name: 'BigScreenScreen',
-
-  data() {
-    return {}
-  },
-  created() {},
-  mounted() {
-    this.init(), this.animate()
-  },
-
-  methods: {
-    // init() {
-    //   let container = document.getElementById('container')
-    //   camera = new THREE.PerspectiveCamera(
-    //     70,
-    //     container.clientWidth / container.clientHeight,
-    //     0.01,
-    //     10
-    //   )
-    //   camera.position.z = 10
-    //   scene = new THREE.Scene()
-
-    //   const point = []
-
-    //   mapJson.features.forEach((item) => {
-    //     item.geometry.coordinates[0][0].forEach((value) => {
-    //       point.push(new THREE.Vector2(value[0], value[1]))
-    //     })
-    //   })
-    //   // console.log(mapJson.features)
-
-    //   shape = new THREE.Shape(point)
-
-    //   let geometry = new THREE.ShapeGeometry(shape)
-    //   geometry.center()
-    //   geometry.scale(1, 1, 1)
-    //   console.log(geometry)
-
-    //   let material = new THREE.MeshNormalMaterial()
-
-    //   mesh = new THREE.Mesh(geometry, material)
-    //   scene.add(mesh)
-
-    //   renderer = new THREE.WebGLRenderer({ antialias: true })
-    //   renderer.setSize(window.innerWidth, window.innerHeight)
-    //   renderer.setClearColor(0x12345)
-    //   container.appendChild(renderer.domElement)
-
-    //   console.log(shape)
-    // },
-    animate() {
-      // requestAnimationFrame(this.animate)
-      // mesh.rotation.x += 0.01
-      // mesh.rotation.y += 0.02
-      renderer.render(scene, camera)
-    }
-  },
-  mounted() {
-    this.init()
-    this.animate()
-  }
-}
-</script>
-<style scoped>
-#container {
-  width: 100vw;
-  height: 100vh;
-}
-</style> 
-
--->
-
 <template>
   <div id="container"></div>
 </template>
@@ -110,12 +22,12 @@ export default {
       let uploadedDataURL = '/assets/img/data-1640589484383-TgctXdaF8.png'
       let mapName = 'china'
       let data = [
-        { name: '天津', value: 4075 },
-        { name: '湖北', value: 500 },
-        { name: '湖南', value: 3212 },
-        { name: '江西', value: 5000 },
-        { name: '甘肃', value: 550 },
-        { name: '浙江', value: 1233 }
+        { name: '北京', value: 4075 },
+        { name: '山西', value: 500 },
+        { name: '上海', value: 3212 },
+        { name: '广东', value: 5000 },
+        { name: '黑龙江', value: 550 },
+        { name: '山东', value: 1233 }
       ]
 
       let geoCoordMap = {}
@@ -144,8 +56,7 @@ export default {
         }
       }
 
-      this.chart = echarts.init(document.getElementById('container'))
-      this.chart.setOption({
+      const option = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -483,6 +394,69 @@ export default {
             data: pointData
           }
         ]
+      }
+
+      this.chart = echarts.init(document.getElementById('container'))
+      this.chart.setOption(option)
+
+      var count = 0
+      var timer = null
+      var chart = echarts.init(document.getElementById('container'))
+      var dataLength = option.series[0].data.length
+      timer && clearInterval(timer)
+      timer = setInterval(() => {
+        chart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0
+        })
+        chart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: count % dataLength
+        })
+        chart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: count % dataLength
+        })
+        count++
+      }, 3000)
+      chart.on('mouseover', function (params) {
+        clearInterval(timer)
+        chart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0
+        })
+        chart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: params.dataIndex
+        })
+        chart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: params.dataIndex
+        })
+      })
+      chart.on('mouseout', function (params) {
+        timer && clearInterval(timer)
+        timer = setInterval(function () {
+          chart.dispatchAction({
+            type: 'downplay',
+            seriesIndex: 0
+          })
+          chart.dispatchAction({
+            type: 'highlight',
+            seriesIndex: 0,
+            dataIndex: count % dataLength
+          })
+          chart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: count % dataLength
+          })
+          count++
+        }, 3000)
       })
     }
   }

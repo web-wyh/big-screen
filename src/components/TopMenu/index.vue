@@ -1,8 +1,8 @@
 <template>
   <div class="topNav">
     <div class="footSty">
-      <!-- 家&nbsp;聊&nbsp;IM&nbsp;数&nbsp;据&nbsp;大&nbsp;屏 -->
-      武&nbsp;汉&nbsp;保&nbsp;供&nbsp;水&nbsp;
+      家&nbsp;聊&nbsp;IM&nbsp;数&nbsp;据&nbsp;大&nbsp;屏
+      <!-- 武&nbsp;汉&nbsp;保&nbsp;供&nbsp;水&nbsp; -->
     </div>
     <div class="weather">
       <span>{{
