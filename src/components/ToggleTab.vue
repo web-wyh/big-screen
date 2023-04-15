@@ -51,6 +51,29 @@
           </div>
         </div>
       </dv-border-box-1>
+
+      <dv-border-box-1>
+        <div class="box" style="margin: 14px 0 20px 17px">
+          <div class="box-logo" style="width: 100%; height: 26px">
+            <div style="width: 22px; height: 26px">
+              <div class="logo-y"></div>
+            </div>
+            <div
+              style="
+                color: #00ccff;
+                font-size: 15px;
+                line-height: 26px;
+                font-weight: bolder;
+              "
+            >
+              111
+            </div>
+          </div>
+          <div style="width: 100%; height: 150px">
+            <broken-line2></broken-line2>
+          </div>
+        </div>
+      </dv-border-box-1>
     </div>
   </div>
 </template>
@@ -62,6 +85,7 @@ import ShadowBrokenLine from './ShadowBrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
 import DropletPattern from './DropletPattern'
+import BrokenLine2 from './BrokenLine2'
 
 export default {
   components: {
@@ -69,7 +93,8 @@ export default {
     ShadowBrokenLine,
     BarLine,
     ScrollTable,
-    DropletPattern
+    DropletPattern,
+    BrokenLine2
   },
   data() {
     return {}

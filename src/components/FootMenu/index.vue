@@ -180,8 +180,9 @@ export default {
   width: 640px;
   height: 160px;
   position: fixed;
-  bottom: 210px;
-  left: 30%;
+  /* bottom: 210px; */
+  bottom: 0;
+  left: 32%;
 }
 .foot {
   background-color: rgba(17, 28, 53, 0.6);

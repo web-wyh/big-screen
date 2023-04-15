@@ -173,7 +173,7 @@ export default {
 
 <style lang="scss" scoped>
 #brokenLine1 {
-  width: 230px;
+  width: 460px;
   height: 150px;
   z-index: 9999;
 }

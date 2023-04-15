@@ -1,12 +1,12 @@
 <template>
-  <dv-full-screen-container>
+  <div id="bigScreen">
     <!-- 顶部导航 -->
     <top-menu></top-menu>
     <screen-map></screen-map>
     <left-table-ech></left-table-ech>
     <right-table-ech></right-table-ech>
     <foot-menu></foot-menu>
-  </dv-full-screen-container>
+  </div>
 </template>
 <script>
 import TopMenu from '../TopMenu'

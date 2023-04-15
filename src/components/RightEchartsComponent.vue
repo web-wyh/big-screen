@@ -50,8 +50,7 @@
           </div>
 
           <div style="width: 100%; height: 150px; display: flex">
-            <div style="width: 50%"><broken-line1></broken-line1></div>
-            <div style="width: 50%"><broken-line2></broken-line2></div>
+            <div style="width: 100%"><broken-line1></broken-line1></div>
           </div>
         </div>
       </dv-border-box-8>
@@ -94,7 +93,7 @@ import ScrollTable from './ScrollTable'
 import HistogramEcharts from './HistogramEcharts'
 import BrokenTable from './BrokenTable'
 import brokenLine1 from './BrokenLine1'
-import brokenLine2 from './BrokenLine2'
+
 
 export default {
   components: {
@@ -105,7 +104,6 @@ export default {
     HistogramEcharts,
     BrokenTable,
     brokenLine1,
-    brokenLine2
   },
   data() {
     return {}
