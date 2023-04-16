@@ -11,6 +11,8 @@ body,
     #273e56 0,
     #111c35 100%
   ); */
+  width: 100vw;
+  height: 100vh;
   background: url(../img/bg.webp) no-repeat;
   background-size: cover;
 }
