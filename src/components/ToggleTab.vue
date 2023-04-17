@@ -1,11 +1,11 @@
 <template>
   <div class="left_ech_1">
     <div class="allBox">
-      <dv-border-box-1 style="height: 280px">
+      <dv-border-box-8 :reverse="true" style="height: 280px">
         <div style="height: 280px"><droplet-pattern></droplet-pattern></div>
-      </dv-border-box-1>
+      </dv-border-box-8>
 
-      <dv-border-box-1>
+      <dv-border-box-8 :reverse="true">
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -27,9 +27,9 @@
             <div style="width: 50%"><bar-line></bar-line></div>
           </div>
         </div>
-      </dv-border-box-1>
+      </dv-border-box-8>
 
-      <dv-border-box-1>
+      <dv-border-box-8 :reverse="true">
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -50,9 +50,9 @@
             <shadow-broken-line></shadow-broken-line>
           </div>
         </div>
-      </dv-border-box-1>
+      </dv-border-box-8>
 
-      <dv-border-box-1>
+      <dv-border-box-8 :reverse="true">
         <div class="box" style="margin: 14px 0 20px 17px">
           <div class="box-logo" style="width: 100%; height: 26px">
             <div style="width: 22px; height: 26px">
@@ -70,10 +70,10 @@
             </div>
           </div>
           <div style="width: 100%; height: 150px">
-            <broken-line2></broken-line2>
+            <pie-gaupe></pie-gaupe>
           </div>
         </div>
-      </dv-border-box-1>
+      </dv-border-box-8>
     </div>
   </div>
 </template>
@@ -85,8 +85,7 @@ import ShadowBrokenLine from './ShadowBrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
 import DropletPattern from './DropletPattern'
-import BrokenLine2 from './BrokenLine2'
-
+import PieGaupe from './PieGaupe'
 export default {
   components: {
     ShrinkTable,
@@ -94,7 +93,7 @@ export default {
     BarLine,
     ScrollTable,
     DropletPattern,
-    BrokenLine2
+    PieGaupe
   },
   data() {
     return {}

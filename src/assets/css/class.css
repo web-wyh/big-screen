@@ -13,7 +13,7 @@ body,
   ); */
   width: 100vw;
   height: 100vh;
-  background: url(../img/bg.webp) no-repeat;
+  background: url(../img/bg.jpeg) no-repeat;
   background-size: cover;
 }
 
@@ -25,7 +25,6 @@ body,
   margin-bottom: 20px;
 }
 .dv-border-box-9 {
-  /* background-color: rgba(1, 37, 70, 0.5); */
   margin-bottom: 20px;
   width: 470px;
 }

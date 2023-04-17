@@ -49,8 +49,9 @@
             </div>
           </div>
 
-          <div style="width: 100%; height: 150px; display: flex">
-            <div style="width: 100%"><broken-line1></broken-line1></div>
+          <div style="width: 100%; height: 150px">
+            <!-- <broken-line></broken-line> -->
+            <histogram-echarts></histogram-echarts>
           </div>
         </div>
       </dv-border-box-8>
@@ -73,9 +74,10 @@
               111
             </div>
           </div>
-          <div style="width: 100%; height: 150px">
-            <!-- <broken-line></broken-line> -->
-            <histogram-echarts></histogram-echarts>
+
+          <div style="width: 100%; height: 150px; display: flex">
+            <div style="width: 50%"><broken-line1></broken-line1></div>
+            <div style="width: 50%"><broken-line2></broken-line2></div>
           </div>
         </div>
         <!--  -->
@@ -93,7 +95,7 @@ import ScrollTable from './ScrollTable'
 import HistogramEcharts from './HistogramEcharts'
 import BrokenTable from './BrokenTable'
 import brokenLine1 from './BrokenLine1'
-
+import BrokenLine2 from './BrokenLine2'
 
 export default {
   components: {
@@ -104,6 +106,7 @@ export default {
     HistogramEcharts,
     BrokenTable,
     brokenLine1,
+    BrokenLine2
   },
   data() {
     return {}

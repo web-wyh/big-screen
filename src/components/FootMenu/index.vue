@@ -20,21 +20,21 @@
     <div class="header2">
       <div>
         <div class="header2_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 70px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
       </div>
       <div>
         <div class="header2_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 70px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
       </div>
     </div>
     <div class="header3">
       <div>
         <div class="header3_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 70px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
       </div>
       <div>
         <div class="header3_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 70px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
       </div>
     </div>
 
@@ -199,29 +199,22 @@ export default {
 <style scoped>
 .FootScrollTable {
   width: 640px;
-  height: 250px;
+  height: 190px;
   position: fixed;
   bottom: 0;
   left: 32%;
   display: flex;
   flex-direction: column;
 }
-.header {
-  width: 640px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(17, 28, 53, 0.6);
-}
+
 .header1 {
   width: 100%;
   height: 30px;
-  /* background-color: #000; */
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header2 {
   width: 100%;
-  height: 110px;
+  height: 80px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -240,7 +233,7 @@ export default {
 }
 .header3 {
   width: 100%;
-  height: 110px;
+  height: 80px;
   display: flex;
   text-align: center;
   color: #fff;

@@ -35,12 +35,14 @@ export default {
       /*获取地图数据*/
       let mapFeatures = echarts.getMap(mapName).geoJson.features
 
+      console.log(mapFeatures)
       mapFeatures.forEach((item) => {
         // 地区名称
         let name = item.properties.name
         // 地区经纬度
         geoCoordMap[name] = item.properties.cp
       })
+
       console.log(geoCoordMap)
       let max = 4000
 
@@ -465,5 +467,18 @@ export default {
 #container {
   width: 100vw;
   height: 100vh;
+  animation: bounce-down 7s linear infinite;
+}
+@keyframes bounce-down {
+  25% {
+    transform: translateY(-15px);
+  }
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(15px);
+  }
 }
 </style>
