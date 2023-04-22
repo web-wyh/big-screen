@@ -6,14 +6,26 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   name: 'WatersupplyWebIndex',
 
   data() {
     return {
       chart: null,
-      chartOption: {
+      chartName: [],
+      chartData: []
+    }
+  },
+  created() {
+    this.requestAddFriends()
+  },
+  mounted() {},
+
+  methods: {
+    initChart() {
+      this.chart = echarts.init(document.getElementById('brokenLine1'))
+      this.chart.setOption({
         tooltip: {
           trigger: 'axis'
         },
@@ -48,6 +60,7 @@ export default {
             },
             axisLabel: {
               // 坐标轴刻度标签的相关设置
+              interval: 0,
               textStyle: {
                 color: '#fff',
                 // padding: 10,
@@ -60,7 +73,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ['01日', '02日', '03日', '04日', '05日', '06日']
+            data: this.chartName
           }
         ],
         yAxis: [
@@ -68,8 +81,8 @@ export default {
             nameTextStyle: {
               show: false
             },
-            min: 200,
-            interval: 100,
+            min: 0,
+            // interval: ,
             splitLine: {
               show: false,
               lineStyle: {
@@ -93,7 +106,7 @@ export default {
         ],
         series: [
           {
-            name: '本月',
+            name: '好友关系统计 ',
             type: 'line',
             symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
             showAllSymbol: true,
@@ -111,61 +124,45 @@ export default {
             tooltip: {
               show: true
             },
-            data: ['410', '220', '430', '245', '550', '260']
-          },
-          {
-            name: '上月',
-            type: 'line',
-            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
-            showAllSymbol: true,
-            symbolSize: 5,
-            lineStyle: {
-              normal: {
-                width: 2,
-                color: 'rgba(45,131,234,1)' // 线条颜色
-              }
-            },
-            itemStyle: {
-              color: 'rgba(45,131,234,1)'
-            },
-            tooltip: {
-              show: true
-            },
-            data: ['500', '300', '272', '235', '280', '260']
-          },
-          {
-            name: '去年同期',
-            type: 'line',
-            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
-            showAllSymbol: true,
-            symbolSize: 5,
-            lineStyle: {
-              normal: {
-                width: 2,
-                color: 'rgba(176, 238, 241, 1)' // 线条颜色
-              }
-            },
-            itemStyle: {
-              color: 'rgba(176, 238, 241, 1)'
-            },
-            tooltip: {
-              show: true
-            },
-            data: ['320', '310', '222', '225', '250', '320']
+            data: this.chartData
           }
         ]
-      }
-    }
-  },
+      })
+    },
+    requestAddFriends() {
+      this.$axios({
+        methods: 'get',
+        url: api.addFirends,
+        params: {
+          secret: '9908919d741c7f9f1556d7d884af0340',
+          time: 1680789307,
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          const dataCopy = [...data].reverse()
+          const dataArr = []
+          for (let i = 0; i < 7; i++) {
+            dataArr.push(dataCopy[i])
+          }
 
-  mounted() {
-    this.initChart()
-  },
+          dataArr.map((item) => {
+            this.chartName.push(
+              `${Object.keys(item)[0].slice(5, Object.keys(item)[0].length)}`
+            )
+            // this.chartName.push(Object.keys(item)[0])
+            this.chartData.push(Object.values(item)[0])
+          })
+          // console.log(this.chartData)
+          // console.log(this.chartName)
+          this.initChart()
 
-  methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById('brokenLine1'))
-      this.chart.setOption(this.chartOption)
+          // console.log(data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -174,7 +171,7 @@ export default {
 <style lang="scss" scoped>
 #brokenLine1 {
   width: 230px;
-  height: 150px;
+  height: 120px;
   z-index: 9999;
 }
 </style>

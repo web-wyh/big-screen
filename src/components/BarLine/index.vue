@@ -6,29 +6,22 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   name: 'WatersupplyWebIndex',
   data() {
     return {
-      chartData: [10, 49, 17, 65, 440, 43, 22],
-      chartName: [
-        '历下区',
-        '历城区',
-        '槐荫区',
-        '章丘区',
-        '天桥区',
-        '市中区',
-        '云州区'
-      ],
+      chartData: [],
+      chartName: [],
       myChart: '',
       max: '',
       timer: null
     }
   },
-  mounted() {
-    this.initChart()
+  created() {
+    this.reuqestBar()
   },
+  mounted() {},
 
   methods: {
     initChart() {
@@ -41,7 +34,7 @@ export default {
         },
         grid: {
           top: '3%',
-          right: '35%',
+          right: '18%',
           left: '-10%',
           bottom: '2%',
           containLabel: true
@@ -84,7 +77,7 @@ export default {
               color: '#fff',
               fontSize: 12,
               align: 'left',
-              margin: 54
+              margin: 44
             },
             axisLine: {
               show: false
@@ -117,6 +110,8 @@ export default {
             type: 'bar',
             barWidth: '10',
             yAxisIndex: 1,
+            min: 0,
+            max: 10,
             silent: true,
             itemStyle: {
               normal: {
@@ -131,11 +126,11 @@ export default {
                 value: this.max,
                 label: {
                   // 右边数值
-                  formatter: `{a|${v}}` + '{b|万吨\/日}',
+                  formatter: `{a|${v}}`,
                   position: 'right',
                   rich: {
                     a: {
-                      color: '#00acdb',
+                      color: '#fff',
                       fontSize: 12,
                       padding: [0, 4, 0, 0]
                     },
@@ -152,6 +147,7 @@ export default {
           {
             show: true,
             type: 'bar',
+
             barWidth: '10',
             z: 2,
             label: {
@@ -215,11 +211,11 @@ export default {
                   value: this.max,
                   label: {
                     // 右边数值
-                    formatter: `{a|${v}}` + '{b|万吨\/日}',
+                    formatter: `{a|${v}}`,
                     position: 'right',
                     rich: {
                       a: {
-                        color: '#00acdb',
+                        color: '#fff',
                         fontSize: 12,
                         padding: [0, 4, 0, 0]
                       },
@@ -239,6 +235,37 @@ export default {
           ]
         })
       }, 3000)
+    },
+    reuqestBar() {
+      this.$axios({
+        methods: 'get',
+        url: api.barData,
+        params: {
+          secret: '9908919d741c7f9f1556d7d884af0340',
+          time: '1680789307',
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          const dataCopy = [...data].reverse()
+          const dataArr = []
+          for (let i = 0; i < 7; i++) {
+            dataArr.push(dataCopy[i])
+          }
+
+          dataArr.map((item) => {
+            this.chartName.push(
+              Object.keys(item)[0].slice(5, Object.keys(item)[0].length)
+            )
+            this.chartData.push(Object.values(item)[0])
+          })
+
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -247,7 +274,7 @@ export default {
 <style lang="scss" scoped>
 #Bar {
   width: 230px;
-  height: 150px;
+  height: 130px;
   z-index: 9999;
 }
 </style>

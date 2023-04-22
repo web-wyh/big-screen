@@ -6,24 +6,17 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   data() {
     return {
-      dataList: [
-        { value: 112, name: '历下区 ' },
-        { value: 53, name: '历城区 ' },
-        { value: 53, name: '章丘区 ' },
-        { value: 53, name: '槐荫区 ' },
-        { value: 53, name: '市中区 ' },
-        { value: 53, name: '天桥区 ' }
-      ],
+      dataList: [],
       chart: null,
       dataArr: []
     }
   },
-  mounted() {
-    this.initChart()
+  created() {
+    this.requestPieData()
   },
   methods: {
     /* 初始化charts */
@@ -72,15 +65,39 @@ export default {
             bottom: '5%',
             radius: ['50%', '80%'],
             label: {
-              show: false
+              show: true
             },
             labelLine: {
-              show: false
+              show: true
             },
             data: this.dataArr
           }
         ]
       })
+    },
+    requestPieData() {
+      this.$axios({
+        methods: 'get',
+        url: api.pieGaupeData,
+        params: {
+          secret: 'fa6fd2501c030f5329d36bb60a13315c',
+          time: 1681626074,
+          // access_token: sessionStorage.getItem('token')
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          this.dataList = data.map((obj) => ({
+            name: `${Object.keys(obj)[0]}:${Object.values(obj)[0]}`,
+            value: Object.values(obj)[0]
+          }))
+
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -88,7 +105,7 @@ export default {
 
 <style scoped lang="scss">
 #pieGaupe {
-  height: 150px;
+  height: 110px;
   width: 460px;
 }
 </style>

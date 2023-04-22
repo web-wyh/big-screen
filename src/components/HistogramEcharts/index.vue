@@ -10,31 +10,23 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   name: 'WatersupplyWebIndex',
 
   data() {
     return {
       timer: null,
-      chartData: [10, 52, 20, 33, 39, 33, 22],
-      chartName: [
-        '中心城区',
-        '黄陂区',
-        '江夏区',
-        '江岸区',
-        '东西湖区',
-        '新洲区',
-        '江汉区'
-      ],
+      chartData: [],
+      chartName: [],
       chart: null,
       max: ''
     }
   },
-
-  mounted() {
-    this.initChart()
+  created() {
+    this.requestRegister()
   },
+  mounted() {},
 
   methods: {
     initChart() {
@@ -77,7 +69,7 @@ export default {
                 if (value === 0) {
                   return 0
                 }
-                return `${value}%`
+                return `${value}`
               }
             },
             axisLine: {
@@ -140,6 +132,37 @@ export default {
           ]
         })
       }, 3000)
+    },
+    requestRegister() {
+      this.$axios({
+        methods: 'get',
+        url: api.registerData,
+        params: {
+          secret: '9908919d741c7f9f1556d7d884af0340',
+          time: 1680789307,
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          const dataCopy = [...data].reverse()
+          const dataArr = []
+          for (let i = 0; i < 7; i++) {
+            dataArr.push(dataCopy[i])
+          }
+
+          dataArr.map((item) => {
+            this.chartName.push(
+              Object.keys(item)[0].slice(5, Object.keys(item)[0].length)
+            )
+
+            this.chartData.push(Object.values(item)[0])
+          })
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -147,7 +170,7 @@ export default {
 
 <style lang="scss" scoped>
 #histogramEch {
-  height: 150px;
+  height: 130px;
   width: 100%;
 }
 </style>

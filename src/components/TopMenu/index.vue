@@ -54,7 +54,6 @@ export default {
             const { lives } = res?.data
 
             this.weather = lives[0]
-            // console.log(this.weather, this.weatherPosition)
           })
         })
         .catch((err) => {

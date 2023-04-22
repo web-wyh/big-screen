@@ -1,7 +1,7 @@
 <template>
   <div class="left_ech_1">
     <div class="allBox">
-      <dv-border-box-8 :reverse="true" style="height: 280px">
+      <dv-border-box-8 :reverse="true" style="height: 200px">
         <div style="height: 280px"><droplet-pattern></droplet-pattern></div>
       </dv-border-box-8>
 
@@ -19,10 +19,10 @@
                 font-weight: bolder;
               "
             >
-              222
+              当日人数统计
             </div>
           </div>
-          <div style="width: 100%; height: 150px; display: flex">
+          <div style="width: 100%; height: 130px; display: flex">
             <div style="width: 50%"><shrink-table></shrink-table></div>
             <div style="width: 50%"><bar-line></bar-line></div>
           </div>
@@ -43,11 +43,11 @@
                 font-weight: bolder;
               "
             >
-              111
+              活跃用户统计
             </div>
           </div>
-          <div style="width: 100%; height: 150px">
-            <shadow-broken-line></shadow-broken-line>
+          <div style="width: 100%; height: 130px">
+            <broken-line></broken-line>
           </div>
         </div>
       </dv-border-box-8>
@@ -66,10 +66,10 @@
                 font-weight: bolder;
               "
             >
-              111
+              运营商信息统计
             </div>
           </div>
-          <div style="width: 100%; height: 150px">
+          <div style="width: 100%; height: 110px">
             <pie-gaupe></pie-gaupe>
           </div>
         </div>
@@ -81,15 +81,16 @@
 <script>
 // import * as echarts from 'echarts'
 import ShrinkTable from './ShrinkTable'
-import ShadowBrokenLine from './ShadowBrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
 import DropletPattern from './DropletPattern'
 import PieGaupe from './PieGaupe'
+import brokenLine from './BrokenLine'
+
 export default {
   components: {
     ShrinkTable,
-    ShadowBrokenLine,
+    brokenLine,
     BarLine,
     ScrollTable,
     DropletPattern,

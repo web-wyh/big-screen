@@ -6,20 +6,17 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   data() {
     return {
-      dataList: [
-        { value: 112, name: '历下区 ' },
-        { value: 53, name: '历城区 ' }
-      ],
+      dataList: [],
       chart: null,
       dataArr: []
     }
   },
   mounted() {
-    this.initChart()
+    this.requestMax()
   },
   methods: {
     /* 初始化charts */
@@ -36,6 +33,7 @@ export default {
       this.chart.setOption({
         color: ['#1994ff', '#f48483'],
         tooltip: {
+          show: false,
           trigger: 'item'
         },
         legend: {
@@ -54,22 +52,51 @@ export default {
         },
         series: [
           {
-            name: '济南市',
+            name: '当日人数统计',
             type: 'pie',
             right: '0%',
             top: '15%',
             bottom: '5%',
             radius: ['50%', '80%'],
             label: {
-              show: false
+              show: true,
+              color: '#fff'
             },
             labelLine: {
-              show: false
+              show: true
             },
             data: this.dataArr
           }
         ]
       })
+    },
+    requestMax() {
+      this.$axios({
+        methods: 'get',
+        url: api.maxAndAll,
+        params: {
+          secret: '5f37767efca7a4c71c9aaab94be5f43d',
+          time: '1680921792',
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          this.dataList = [
+            {
+              value: Object.values(data)[1],
+              name: `最高:${Object.values(data)[1]}`
+            },
+            {
+              value: Object.values(data)[0],
+              name: `当前:${Object.values(data)[0]} `
+            }
+          ]
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -77,7 +104,7 @@ export default {
 
 <style scoped lang="scss">
 #pie1 {
-  height: 150px;
+  height: 130px;
   width: 230px;
 }
 </style>

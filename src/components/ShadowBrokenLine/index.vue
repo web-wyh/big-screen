@@ -6,21 +6,20 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   name: 'WatersupplyWebIndex',
 
   data() {
     return {
       chart: null,
-      data1: [320, 132, 101, 134, 90, 230, 210],
-      data2: [420, 182, 191, 234, 290, 330, 310],
-      data3: [350, 232, 201, 154, 190, 330, 410]
+      chartName: [],
+      chartData: []
     }
   },
 
-  mounted() {
-    this.initChart()
+  created() {
+    this.requestSingleChat()
   },
 
   methods: {
@@ -41,7 +40,7 @@ export default {
           },
           itemGap: 8,
           itemWidth: 18,
-          data: ['1', '2', '3']
+          data: ['单聊消息统计']
         },
         grid: {
           top: '26%',
@@ -61,7 +60,9 @@ export default {
               }
             },
             axisLabel: {
+              interval: 0,
               // 坐标轴刻度标签的相关设置
+
               textStyle: {
                 color: '#fff',
                 // padding: 10,
@@ -74,7 +75,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: this.chartName
           }
         ],
         yAxis: [
@@ -83,7 +84,7 @@ export default {
               show: false
             },
             // splitNumber: 2,
-            interval: 100,
+            interval: 50,
             splitLine: {
               show: false,
               lineStyle: {
@@ -107,35 +108,49 @@ export default {
         ],
         series: [
           {
-            name: '1',
+            name: '单聊消息统计',
             symbol: 'circle',
             type: 'line',
             // stack: 'Total',
             itemStyle: {
               color: 'rgba(176, 238, 241, 1)'
             },
-            data: this.data1
-          },
-          {
-            name: '2',
-            symbol: 'circle',
-            type: 'line',
-            itemStyle: {
-              color: 'rgba(95, 191, 251, 1)'
-            },
-            data: this.data2
-          },
-          {
-            name: '3',
-            symbol: 'circle',
-            type: 'line',
-            itemStyle: {
-              color: 'rgba(42, 235, 232, 1)'
-            },
-            data: this.data3
+            data: this.chartData
           }
         ]
       })
+    },
+    requestSingleChat() {
+      this.$axios({
+        methods: 'get',
+        url: api.singleChat,
+        params: {
+          secret: '9908919d741c7f9f1556d7d884af0340',
+          time: 1680789307,
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          const dataCopy = [...data].reverse()
+          const dataArr = []
+          for (let i = 0; i < 15; i++) {
+            dataArr.push(dataCopy[i])
+          }
+          dataArr.reverse()
+
+          dataArr.map((item) => {
+            this.chartName.push(
+              `${Object.keys(item)[0].slice(8, Object.keys(item)[0].length)}日`
+            )
+
+            this.chartData.push(Object.values(item)[0])
+          })
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -144,7 +159,7 @@ export default {
 <style lang="scss" scoped>
 #shadowBrokenLine {
   width: 450px;
-  height: 150px;
+  height: 130px;
   z-index: 9999;
 }
 </style>

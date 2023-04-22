@@ -2,8 +2,8 @@
   <div class="left_ech_1">
     <div class="allBox">
       <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
-      <dv-border-box-8 style="height: 280px">
-        <div style="height: 280px; width: 100%">
+      <dv-border-box-8 style="height: 200px">
+        <div style="height: 200px; width: 100%">
           <scroll-table></scroll-table>
         </div>
       </dv-border-box-8>
@@ -22,11 +22,11 @@
                 font-weight: bolder;
               "
             >
-              111
+              发送消息统计
             </div>
           </div>
           <div style="width: 100%; height: 150px">
-            <broken-line></broken-line>
+            <shadow-broken-line></shadow-broken-line>
           </div>
         </div>
       </dv-border-box-8>
@@ -45,11 +45,11 @@
                 font-weight: bolder;
               "
             >
-              333
+              注册用户统计
             </div>
           </div>
 
-          <div style="width: 100%; height: 150px">
+          <div style="width: 100%; height: 110px">
             <!-- <broken-line></broken-line> -->
             <histogram-echarts></histogram-echarts>
           </div>
@@ -71,11 +71,11 @@
                 font-weight: bolder;
               "
             >
-              111
+              好友关系统计
             </div>
           </div>
 
-          <div style="width: 100%; height: 150px; display: flex">
+          <div style="width: 100%; height: 120px; display: flex">
             <div style="width: 50%"><broken-line1></broken-line1></div>
             <div style="width: 50%"><broken-line2></broken-line2></div>
           </div>
@@ -89,18 +89,18 @@
 <script>
 // import * as echarts from 'echarts'
 import ShrinkTable from './ShrinkTable'
-import brokenLine from './BrokenLine'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'
 import HistogramEcharts from './HistogramEcharts'
 import BrokenTable from './BrokenTable'
 import brokenLine1 from './BrokenLine1'
 import BrokenLine2 from './BrokenLine2'
+import ShadowBrokenLine from './ShadowBrokenLine'
 
 export default {
   components: {
     ShrinkTable,
-    brokenLine,
+    ShadowBrokenLine,
     BarLine,
     ScrollTable,
     HistogramEcharts,
@@ -135,7 +135,6 @@ export default {
       position: relative;
       border-radius: 10px;
       width: 440px;
-      height: 176px;
       background-color: rgba(1, 37, 70, 0.3);
 
       .box-logo {

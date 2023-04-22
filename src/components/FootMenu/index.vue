@@ -13,32 +13,30 @@
             font-weight: bolder;
           "
         >
-          协议服务监控
+          告警事件
         </div>
       </div>
     </div>
     <div class="header2">
       <div>
         <div class="header2_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
       </div>
       <div>
         <div class="header2_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
       </div>
     </div>
     <div class="header3">
       <div>
         <div class="header3_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
       </div>
       <div>
         <div class="header3_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 40px" />
+        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
       </div>
     </div>
-
-    <!-- <dv-scroll-board :config="config" style="width: 640px; height: 140px" /> -->
   </div>
 </template>
 <script>
@@ -51,12 +49,12 @@ export default {
       tableHeaderInfo: [],
       config: {
         data: [
-          ['平均每次TCP接收到的字节数'],
-          ['系统ip'],
-          ['系统端口'],
-          ['关闭连接数'],
-          ['处理packet平均耗时'],
-          ['数据显示次数']
+          ['平均每次TCP接收到的字节数:69.75576923076923'],
+          ['系统ip:69.75576923076923'],
+          ['系统端口:69.75576923076923'],
+          ['关闭连接数:69.75576923076923'],
+          ['处理packet平均耗时:69.75576923076923'],
+          ['数据显示次数:69.75576923076923']
         ],
         rowNum: 1,
         oddRowBGC: 'rgba(17, 28, 53, 0.6)',
@@ -199,14 +197,13 @@ export default {
 <style scoped>
 .FootScrollTable {
   width: 640px;
-  height: 190px;
+  height: 110px;
   position: fixed;
-  bottom: 0;
+  bottom: 3%;
   left: 32%;
   display: flex;
   flex-direction: column;
 }
-
 .header1 {
   width: 100%;
   height: 30px;
@@ -214,7 +211,7 @@ export default {
 }
 .header2 {
   width: 100%;
-  height: 80px;
+  height: 40px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -223,17 +220,21 @@ export default {
 }
 .header2_1 {
   width: 100%;
-  height: 40px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 13px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header2_2 {
   width: 100%;
-  height: 40px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 13px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header3 {
   width: 100%;
-  height: 80px;
+  height: 40px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -242,12 +243,16 @@ export default {
 }
 .header3_1 {
   width: 100%;
-  height: 40px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 13px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header3_2 {
   width: 100%;
-  height: 40px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 13px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .box-logo {

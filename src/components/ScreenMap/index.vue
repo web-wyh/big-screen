@@ -4,6 +4,7 @@
 <script>
 import * as echarts from 'echarts'
 import '../../chinaMap/china'
+import api from '../../http/api'
 export default {
   name: 'BigScreenScreen',
 
@@ -12,30 +13,49 @@ export default {
       chart: null
     }
   },
-
-  mounted() {
-    this.initChart()
+  created() {
+    this.requestMap()
   },
+  mounted() {},
 
   methods: {
-    initChart() {
+    requestMap() {
+      console.log(this.$store.state.token)
+
+      this.$axios({
+        methods: 'get',
+        url: api.mapData,
+        params: {
+          secret: 'fa6fd2501c030f5329d36bb60a13315c',
+          time: 1681626074,
+          // access_token: sessionStorage.getItem('token')
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          const result = data.map((obj) => ({
+            name: Object.keys(obj)[0],
+            value: Object.values(obj)[0]
+          }))
+          // console.log(this.$store.state.token)
+          this.initChart(result)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    initChart(result) {
       // let uploadedDataURL = '/assets/img/data-1640589484383-TgctXdaF8.png'
       let mapName = 'china'
-      let data = [
-        { name: '北京', value: 4075 },
-        { name: '山西', value: 500 },
-        { name: '上海', value: 3212 },
-        { name: '广东', value: 5000 },
-        { name: '黑龙江', value: 550 },
-        { name: '山东', value: 1233 }
-      ]
+      let data = result
 
       let geoCoordMap = {}
 
       /*获取地图数据*/
       let mapFeatures = echarts.getMap(mapName).geoJson.features
 
-      console.log(mapFeatures)
+      // console.log(mapFeatures)
       mapFeatures.forEach((item) => {
         // 地区名称
         let name = item.properties.name
@@ -43,7 +63,6 @@ export default {
         geoCoordMap[name] = item.properties.cp
       })
 
-      console.log(geoCoordMap)
       let max = 4000
 
       let pointData = []
@@ -267,7 +286,7 @@ export default {
                 var res = ''
                 var name = params.name
                 var count = params.value ? params.value : 0
-                res = `<div style="box-shadow: 0 0 10px #3BD9D9; padding: 10px; position: absolute; top: 0; left:0;  border-radius: 4px; border: 1px solid #04b9ff; background: linear-gradient(to bottom,  #51bfd4 0%,rgba(35,90,178,.8) 100%);">
+                res = `<div style="box-shadow: 0 0 10px #3BD9D9; padding: 10px; position: absolute; top: 0; left:0;  border-radius: 4px; border: 1px solid #04b9ff; background: linear-gradient(to bottom,  rgba(1,37,70,.2) 0%,rgba(1,37,70,.2) 100%);">
                              <div style='color:#F4BD59; font-size: 14px;'>${name}</div>
                              <div style="display: flex; align-items: center;padding-top: 6px;">
                               <div style="height: 6px; width: 6px; border-radius: 50%; background:#F4BD59; margin-right: 10px;"></div> <span style='color:#fff;font-size: 12px;margin-right: 20px;'>tooltip</span><span style="font-size: 12px;font-family: 'PangMenZhengDao'">${count}</span>
@@ -340,7 +359,8 @@ export default {
             data: data
           },
           {
-            type: 'effectScatter',
+            type: 'scatter',
+            // type: 'effectScatter',
             coordinateSystem: 'geo',
             rippleEffect: {
               brushType: 'fill'
@@ -363,7 +383,7 @@ export default {
             itemStyle: {
               normal: {
                 color: '#FEBE13', // 圆点的颜色
-                shadowBlur: 10,
+                shadowBlur: 1,
                 shadowColor: '#333'
               }
             },

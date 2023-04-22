@@ -14,7 +14,7 @@
               font-weight: bolder;
             "
           >
-            协议服务监控
+            协议服务统计
           </div>
         </div>
       </div>
@@ -23,11 +23,11 @@
         <div class="header2_2">服务端ip:172.16.0.1</div>
       </div>
     </div>
-    <dv-scroll-board :config="config" style="width: 440px; height: 180px" />
+    <dv-scroll-board :config="config" style="width: 440px; height: 120px" />
   </div>
 </template>
 <script>
-// import $API from '../../http/api'
+import api from '../../http/api'
 export default {
   name: 'BigScreenScreen',
 
@@ -151,7 +151,10 @@ export default {
         if (Object.keys(this.data3[0].data[0])[i] === 'clientIp') {
           continue
         }
-        // console.log(Object.keys(this.data3[0].data[0])[i])
+        // console.log(
+        //   Object.values(this.data3[0].data[0])[i].length,
+        //   Object.values(this.data3[0].data[0])[i]
+        // )
         dataArr.push([
           (this.config.data[i][0] += `:<br/>${
             Object.values(this.data3[0].data[0])[i]
@@ -176,7 +179,7 @@ export default {
 
       this.config = {
         data: dataArr,
-        rowNum: 10,
+        rowNum: 3,
         oddRowBGC: 'rgba(17, 28, 53, 0.6)',
         evenRowBGC: 'rgba(5, 36, 84, 0.6)',
         waitTime: 2000,
@@ -197,24 +200,24 @@ export default {
 <style scoped>
 .scrollTable {
   width: 480px;
-  height: 280px;
-  margin: 10px 0 0 15px;
+  height: 180px;
+  margin: 9px 0 0 15px;
 }
 .header {
   width: 440px;
-  height: 80px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header1 {
   width: 100%;
-  height: 50%;
+  height: 20px;
   /* background-color: #000; */
 }
 .header2 {
   width: 100%;
-  height: 50%;
+  height: 40px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -223,11 +226,11 @@ export default {
 }
 .header2_1 {
   width: 50%;
-  height: 100%;
+  height: 20px;
 }
 .header2_2 {
   width: 50%;
-  height: 100%;
+  height: 20px;
 }
 .box-logo {
   display: flex;
