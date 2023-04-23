@@ -6,14 +6,27 @@
 
 <script>
 import * as echarts from 'echarts'
-
+import api from '../../http/api'
 export default {
   name: 'WatersupplyWebIndex',
 
   data() {
     return {
       chart: null,
-      chartOption: {
+      chartName: [],
+      chartData: [],
+      chartData1: []
+    }
+  },
+
+  created() {
+    this.requestActive()
+  },
+
+  methods: {
+    initChart() {
+      this.chart = echarts.init(document.getElementById('brokenLine'))
+      this.chart.setOption({
         tooltip: {
           trigger: 'axis'
         },
@@ -60,7 +73,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ['01日', '02日', '03日', '04日', '05日', '06日']
+            data: this.chartName
           }
         ],
         yAxis: [
@@ -68,8 +81,8 @@ export default {
             nameTextStyle: {
               show: false
             },
-            min: 200,
-            interval: 100,
+            min: 0,
+            interval: 10,
             splitLine: {
               show: false,
               lineStyle: {
@@ -93,7 +106,7 @@ export default {
         ],
         series: [
           {
-            name: '本月',
+            name: '活跃用户数',
             type: 'line',
             symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
             showAllSymbol: true,
@@ -101,12 +114,12 @@ export default {
             lineStyle: {
               normal: {
                 width: 2,
-                color: 'rgba(17,239,168,1)' // 线条颜色
+                color: 'rgba(95, 191, 251, 1)' // 线条颜色
               },
               borderColor: 'rgba(0,0,0,.4)'
             },
             itemStyle: {
-              color: 'rgba(17,239,168,1)'
+              color: 'rgba(95, 191, 251, 1)'
             },
             tooltip: {
               show: true
@@ -123,7 +136,7 @@ export default {
                   [
                     {
                       offset: 0,
-                      color: 'rgba(17,239,168,.3)'
+                      color: 'rgba(95, 191, 251, .3)'
                     },
                     {
                       offset: 1,
@@ -136,10 +149,10 @@ export default {
                 shadowBlur: 20 // shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
               }
             },
-            data: ['410', '220', '430', '245', '550', '260']
+            data: this.chartData
           },
           {
-            name: '上月',
+            name: '新增用户数',
             type: 'line',
             symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
             showAllSymbol: true,
@@ -147,11 +160,12 @@ export default {
             lineStyle: {
               normal: {
                 width: 2,
-                color: 'rgba(45,131,234,1)' // 线条颜色
-              }
+                color: 'rgba(95, 191, 151, 1)' // 线条颜色
+              },
+              borderColor: 'rgba(0,0,0,.4)'
             },
             itemStyle: {
-              color: 'rgba(45,131,234,1)'
+              color: 'rgba(95, 191, 151, 1)'
             },
             tooltip: {
               show: true
@@ -168,141 +182,74 @@ export default {
                   [
                     {
                       offset: 0,
-                      color: 'rgba(45,131,234,.3)'
+                      color: 'rgba(95, 191, 151, .3)'
                     },
                     {
                       offset: 1,
-                      color: 'rgba(45,131,234,0)'
+                      color: 'rgba(17,239,168,0)'
                     }
                   ],
                   false
                 ),
-                shadowColor: 'rgba(10,219,250, 0.5)', // 阴影颜色
+                shadowColor: 'rgba(25,163,223, 0.5)', // 阴影颜色
                 shadowBlur: 20 // shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
               }
             },
-            data: [
-              '500',
-              '300',
-              '272',
-              '235',
-              '280',
-              '260',
-              '500',
-              '300',
-              '272',
-              '235',
-              '280',
-              '260',
-              '500',
-              '300',
-              '272',
-              '235',
-              '280',
-              '260',
-              '500',
-              '300',
-              '272',
-              '235',
-              '280',
-              '260',
-              '500',
-              '300',
-              '272',
-              '235',
-              '280',
-              '260',
-              '140'
-            ]
-          },
-          {
-            name: '去年同期',
-            type: 'line',
-            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
-            showAllSymbol: true,
-            symbolSize: 5,
-            lineStyle: {
-              normal: {
-                width: 2,
-                color: 'rgba(232,91,91,1)' // 线条颜色
-              }
-            },
-            itemStyle: {
-              color: 'rgba(232,91,91,1)'
-            },
-            tooltip: {
-              show: true
-            },
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(
-                  0,
-                  0,
-                  0,
-                  1,
-                  [
-                    {
-                      offset: 0,
-                      color: 'rgba(232,91,91,.3)'
-                    },
-                    {
-                      offset: 1,
-                      color: 'rgba(232,91,91,0)'
-                    }
-                  ],
-                  false
-                ),
-                shadowColor: 'rgba(10,219,250, 0.5)', // 阴影颜色
-                shadowBlur: 20 // shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
-              }
-            },
-            data: [
-              '320',
-              '310',
-              '222',
-              '225',
-              '250',
-              '320',
-              '320',
-              '310',
-              '222',
-              '225',
-              '250',
-              '320',
-              '320',
-              '310',
-              '222',
-              '225',
-              '250',
-              '320',
-              '320',
-              '310',
-              '222',
-              '225',
-              '250',
-              '320',
-              '320',
-              '310',
-              '222',
-              '225',
-              '250',
-              '320',
-              '110'
-            ]
+            data: this.chartData1
           }
         ]
-      }
-    }
-  },
+      })
+    },
+    requestActive() {
+      this.$axios({
+        methods: 'get',
+        url: api.activeData,
+        params: {
+          secret: '5f37767efca7a4c71c9aaab94be5f43d',
+          time: '1680921792',
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          const { data } = res.data
+          console.log(data)
+          const dataCopy1 = data.servenUserActive
+          const dataCopy2 = data.servenNew
+          console.log(dataCopy1, dataCopy2)
 
-  mounted() {
-    this.initChart()
-  },
+          for (let i = 0; i < 7; i++) {
+            this.chartName.push(
+              Object.keys(dataCopy1)[i].slice(
+                5,
+                Object.keys(dataCopy1)[i].length
+              )
+            )
+            this.chartData.push(Object.values(dataCopy1)[i])
+          }
 
-  methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById('brokenLine'))
-      this.chart.setOption(this.chartOption)
+          for (let i = 0; i < 7; i++) {
+            this.chartData1.push(Object.values(dataCopy2)[i])
+          }
+          // const dataArr1 = []
+          // for (let i = 0; i < 7; i++) {
+          //   dataArr.push(dataCopy2[i])
+          // }
+
+          // dataArr.map((item) => {
+          //   this.chartName.push(
+          //     Object.keys(item)[0].slice(5, Object.keys(item)[0].length)
+          //   )
+          //   this.chartData.push(Object.values(item)[0])
+          // })
+
+          // dataArr1.map((item) => {
+          //   this.chartData1.push(Object.values(item)[0])
+          // })
+          this.initChart()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

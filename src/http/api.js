@@ -17,7 +17,8 @@ const api = {
   addFirends: `${requestAllWay}/console/addFriendsCount`,
   addRooms: `${requestAllWay}/console/addRoomsCount`,
   tableScroll: `${requestAllWay}/listenport/list`,
-  pieGaupeData: `${requestAllWay}/operatortatis/list`
+  pieGaupeData: `${requestAllWay}/operatortatis/list`,
+  activeData: `${requestAllWay}/console/serven/statistics`
 }
 
 export default api

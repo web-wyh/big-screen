@@ -144,7 +144,7 @@ export default {
           // console.log(data)
           // const dataCopy = [...data].reverse()
           const dataArr = []
-          for (let i = 0; i < data.length; i++) {
+          for (let i = 0; i < 5; i++) {
             dataArr.push(data[i])
           }
           // console.log(dataArr)

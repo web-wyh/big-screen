@@ -44,31 +44,33 @@ export default {
         },
         legend: {
           width: '100%',
+          orient: 'vertical',
           textStyle: {
             color: '#ffffff',
             fontSize: 12
           },
           bottom: '5%',
-          itemGap: 10,
+          itemGap: 15,
           itemWidth: 5,
           itemHeight: 5,
-          orient: 'horizontal',
-          left: 'center',
+          // orient: 'horizontal',
+          left: 'left',
           top: '0%'
         },
         series: [
           {
-            name: '济南市',
+            name: '运营商信息统计',
             type: 'pie',
             right: '0%',
-            top: '15%',
-            bottom: '5%',
+            top: '10%',
+            left: '40%',
+            bottom: '0%',
             radius: ['50%', '80%'],
             label: {
-              show: true
+              show: false
             },
             labelLine: {
-              show: true
+              show: false
             },
             data: this.dataArr
           }

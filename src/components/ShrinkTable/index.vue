@@ -59,11 +59,11 @@ export default {
             bottom: '5%',
             radius: ['50%', '80%'],
             label: {
-              show: true,
+              show: false,
               color: '#fff'
             },
             labelLine: {
-              show: true
+              show: false
             },
             data: this.dataArr
           }
