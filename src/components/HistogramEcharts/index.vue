@@ -108,7 +108,7 @@ export default {
           }
         ]
       })
-      this.timechartes()
+      // this.timechartes()
     },
     clearTimer() {
       clearInterval(this.timer)
@@ -146,11 +146,12 @@ export default {
         .then((res) => {
           const { data } = res.data
           const dataCopy = [...data].reverse()
+          console.log(data)
           const dataArr = []
           for (let i = 0; i < 7; i++) {
             dataArr.push(dataCopy[i])
           }
-
+          dataArr.reverse()
           dataArr.map((item) => {
             this.chartName.push(
               Object.keys(item)[0].slice(5, Object.keys(item)[0].length)

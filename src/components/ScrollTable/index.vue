@@ -19,11 +19,14 @@
         </div>
       </div>
       <div class="header2">
-        <div class="header2_1">服务端ip:{{ tableHeaderInfo[0] }}</div>
-        <div class="header2_2">服务端ip:172.16.0.1</div>
+        <div class="header2_1">服务端ip:{{ name3.serverIP }}</div>
+        <div class="header2_2">服务端ip:{{ name2.serverIP }}</div>
       </div>
     </div>
-    <dv-scroll-board :config="config" style="width: 440px; height: 120px" />
+    <div style="display: flex">
+      <dv-scroll-board :config="config" style="width: 220px; height: 120px" />
+      <dv-scroll-board :config="config1" style="width: 220px; height: 120px" />
+    </div>
   </div>
 </template>
 <script>
@@ -36,25 +39,24 @@ export default {
       tableHeaderInfo: [],
       config: {
         data: [
-          ['平均每次TCP接收到的字节数', '平均每次TCP接收到的字节数'],
-          ['系统ip', '系统ip'],
-          ['系统端口', '系统端口'],
-          ['关闭连接数', '关闭连接数'],
-          ['处理packet平均耗时', '处理packet平均耗时'],
-          ['处理消息包耗时', '处理消息包耗时'],
-          ['处理了的消息包数', '处理了的消息包数'],
-          ['监控id', '监控id'],
-          ['longtime', 'longtime'],
-          ['在线用户数', '在线用户数'],
-          ['平均每次TCP接收到的业务包数', '平均每次TCP接收到的业务包数'],
-          ['接收到消息字节数', '接收到消息字节数'],
-          ['接收到消息包', '接收到消息包'],
-          ['本IP已接收了多少次TCP数据包', '本IP已接收了多少次TCP数据包'],
-          ['发送了的字节数', '发送了的字节数'],
-          ['发送了的消息包数', '发送了的消息包数'],
-          ['服务端ip', '服务端ip'],
-          ['服务端端口', '服务端端口'],
-          ['采集时间', '采集时间']
+          ['平均每次TCP接收到的字节数'],
+          ['系统IP'],
+          ['系统端口'],
+          ['关闭连接数'],
+          ['处理packet平均耗时'],
+          ['处理消息包耗时'],
+          ['处理了的消息包数'],
+          ['监控id'],
+          ['longtime'],
+          ['在线用户数'],
+          ['平均每次TCP接收到的业务包数'],
+          ['接收到消息字节数'],
+          ['接收到消息包'],
+          ['本IP已接收了多少次TCP数据包'],
+          ['发送了的字节数'],
+          ['发送了的消息包数'],
+          ['服务端端口'],
+          ['采集时间']
         ],
         rowNum: 8,
         oddRowBGC: '#273e56',
@@ -62,121 +64,89 @@ export default {
         waitTime: 1000000,
         align: ['center', 'center']
       },
-      /**
- *
- * ['平均每次TCP接收到的字节数', '平均每次TCP接收到的字节数'],
-          ['系统ip', '系统ip'],
-          ['系统端口', '系统端口'],
-          ['关闭连接数', '关闭连接数'],
-          ['处理packet平均耗时', '处理packet平均耗时'],
-          ['处理消息包耗时', '处理消息包耗时'],
-          ['处理了的消息包数', '处理了的消息包数'],
-          ['监控id', '监控id'],
-          ['longtime', 'longtime'],
-          ['在线用户数', '在线用户数'],
-          ['平均每次TCP接收到的业务包数', '平均每次TCP接收到的业务包数'],
-          ['接收到消息字节数', '接收到消息字节数'],
-          ['接收到消息包', '接收到消息包'],
-          ['本IP已接收了多少次TCP数据包', '本IP已接收了多少次TCP数据包'],
-          ['发送了的字节数', '发送了的字节数'],
-          ['发送了的消息包数', '发送了的消息包数'],
-          ['服务端ip', '服务端ip'],
-          ['服务端端口', '服务端端口'],
-          ['采集时间', '采集时间']
- */
-      data3: [
-        {
-          currentTime: 1681031748476,
-          total: 0.0,
-          data: [
-            {
-              bytesPerTcpReceive: 69.75576923076923,
-              clientIp: '172.16.0.1',
-              clientPort: 54686,
-              closed: 317,
-              handledCostsPerPacket: 12.0,
-              handledPacketCosts: 6246,
-              handledPackets: 520,
-              id: '64327f08c76e414bdb50c9c9',
-              longtime: '1681030860087',
-              onlineCount: 1,
-              packetsPerTcpReceive: 1.001923076923077,
-              receivedBytes: 36273,
-              receivedPackets: 521,
-              receivedTcps: 520,
-              sentBytes: 11472,
-              sentPackets: 529,
-              serverIP: '172.16.0.16',
-              serverPort: 5666,
-              time: '2023-04-09 17:01:00'
-            },
-            {
-              bytesPerTcpReceive: 77.39159405433111,
-              clientIp: '101.71.37.62',
-              clientPort: 8018,
-              closed: 331,
-              handledCostsPerPacket: 9.0,
-              handledPacketCosts: 17639,
-              handledPackets: 1956,
-              id: '64327f0849613a7ef8cd258d',
-              longtime: '1681030860440',
-              onlineCount: 1,
-              packetsPerTcpReceive: 1.0030753459764223,
-              receivedBytes: 150991,
-              receivedPackets: 1957,
-              receivedTcps: 1951,
-              sentBytes: 46186,
-              sentPackets: 2006,
-              serverIP: '172.16.1.26',
-              serverPort: 5666,
-              time: '2023-04-09 17:01:00'
-            }
-          ],
-          resultCode: 1,
-          count: 28
-        }
-      ]
+
+      config1: {
+        data: [
+          ['平均每次TCP接收到的字节数'],
+          ['系统端口'],
+          ['系统IP'],
+          ['关闭连接数'],
+          ['处理packet平均耗时'],
+          ['处理消息包耗时'],
+          ['处理了的消息包数'],
+          ['监控id'],
+          ['longtime'],
+          ['在线用户数'],
+          ['平均每次TCP接收到的业务包数'],
+          ['接收到消息字节数'],
+          ['接收到消息包'],
+          ['本IP已接收了多少次TCP数据包'],
+          ['发送了的字节数'],
+          ['发送了的消息包数'],
+          ['服务端端口'],
+          ['采集时间']
+        ],
+        rowNum: 8,
+        oddRowBGC: '#273e56',
+        evenRowBGC: '#111c35',
+        waitTime: 1000000,
+        align: ['center', 'center']
+      },
+      data3: [],
+      name3: {},
+      name2: {}
     }
   },
   created() {},
   mounted() {
-    this.getData()
+    this.getTableRequest()
   },
 
   methods: {
+    getTableRequest() {
+      this.$axios({
+        methods: 'get',
+        url: api.tableScroll,
+        params: {
+          secret: 'bebba90cf686d8dab59dd1c3a0b84fa5',
+          time: 1680938174,
+          access_token: this.$store.state.token,
+          page: 1,
+          limit: 2
+        }
+      })
+        .then((res) => {
+          // debugger
+          const { data } = res.data
+          this.data3 = data
+          console.log(data)
+          this.getData()
+          this.getDataCopy()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getData() {
       const dataArr = []
-      const dataArr2 = []
-      for (let i = 0; i < Object.values(this.data3[0].data[0]).length; i++) {
-        if (Object.keys(this.data3[0].data[0])[i] === 'clientIp') {
-          continue
-        }
-        // console.log(
-        //   Object.values(this.data3[0].data[0])[i].length,
-        //   Object.values(this.data3[0].data[0])[i]
-        // )
+
+      const { serverIP, ...rest } = this.data3[0]
+      // console.log(rest)
+
+      this.name3 = { serverIP }
+      console.log(rest)
+
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[0][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
         dataArr.push([
-          (this.config.data[i][0] += `:<br/>${
-            Object.values(this.data3[0].data[0])[i]
-          }`)
-        ])
-        // console.log(dataArr)
-      }
-      for (let i = 0; i < Object.values(this.data3[0].data[1]).length; i++) {
-        if (Object.keys(this.data3[0].data[1])[i] === 'clientIp') {
-          continue
-        }
-        dataArr2.push([
-          (this.config.data[i][1] += `:<br/>${
-            Object.values(this.data3[0].data[1])[i]
-          }`)
+          (this.config.data[i] += `:<br/>${Object.values(filteredObj)[i]}`)
         ])
       }
-
-      dataArr.forEach((i, index) => {
-        i.push(dataArr2[index].join())
-      })
-
+      // console.log(dataArr)
       this.config = {
         data: dataArr,
         rowNum: 3,
@@ -185,14 +155,33 @@ export default {
         waitTime: 2000,
         align: ['center', 'center']
       }
-      const headerArr = []
-      Object.keys(this.data3[0].data[0]).forEach((i) => {
-        // console.log(Object.keys(this.data3[0].data[0])[i])
-        if (i === 'clientIp') {
-          headerArr.push(this.data3[0].data[0][i])
-        }
-      })
-      this.tableHeaderInfo = headerArr
+    },
+    getDataCopy() {
+      const dataArr2 = []
+      // console.log(dataArr2)
+
+      const { serverIP, ...rest } = this.data3[1]
+      this.name2 = { serverIP }
+
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[1][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
+        dataArr2.push([
+          (this.config1.data[i] += `:<br/>${Object.values(filteredObj)[i]}`)
+        ])
+      }
+
+      this.config1 = {
+        data: dataArr2,
+        rowNum: 3,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
     }
   }
 }
@@ -227,6 +216,8 @@ export default {
 .header2_1 {
   width: 50%;
   height: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .header2_2 {
   width: 50%;
@@ -243,6 +234,11 @@ export default {
   border-radius: 50px;
   box-shadow: 0 0px 12px 3px #00ccff;
   margin: 10px 0 0 7.5px;
+}
+::v-deep.dv-scroll-board .rows .row-item {
+  height: auto !important;
+  font-size: 12px;
+  line-height: 20px !important;
 }
 /*
 .header1 .header1_2 {

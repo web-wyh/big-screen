@@ -84,7 +84,7 @@ export default {
               show: false
             },
             // splitNumber: 2,
-            interval: 50,
+            interval: 100,
             splitLine: {
               show: false,
               lineStyle: {

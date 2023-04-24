@@ -212,10 +212,8 @@ export default {
       })
         .then((res) => {
           const { data } = res.data
-          console.log(data)
           const dataCopy1 = data.servenUserActive
           const dataCopy2 = data.servenNew
-          console.log(dataCopy1, dataCopy2)
 
           for (let i = 0; i < 7; i++) {
             this.chartName.push(

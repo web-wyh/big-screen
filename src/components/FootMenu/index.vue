@@ -19,28 +19,30 @@
     </div>
     <div class="header2">
       <div>
-        <div class="header2_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
+        <div class="header2_1">
+          {{ `${name3.activeAt}:${name3.summary}` }}
+        </div>
+        <dv-scroll-board :config="config" style="width: 400px; height: 40px" />
       </div>
       <div>
-        <div class="header2_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
+        <div class="header2_2">{{ `${name2.activeAt}:${name2.summary}` }}</div>
+        <dv-scroll-board :config="config1" style="width: 400px; height: 40px" />
       </div>
     </div>
     <div class="header3">
       <div>
-        <div class="header3_1">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
+        <div class="header3_1">{{ `${name1.activeAt}:${name1.summary}` }}</div>
+        <dv-scroll-board :config="config2" style="width: 400px; height: 40px" />
       </div>
       <div>
-        <div class="header3_2">2023-4-15:xx事件</div>
-        <dv-scroll-board :config="config" style="width: 320px; height: 20px" />
+        <div class="header3_2">{{ `${name.activeAt}:${name.summary}` }}</div>
+        <dv-scroll-board :config="config3" style="width: 400px; height: 40px" />
       </div>
     </div>
   </div>
 </template>
 <script>
-// import $API from '../../http/api'
+import api from '../../http/api'
 export default {
   name: 'BigScreenScreen',
 
@@ -49,12 +51,14 @@ export default {
       tableHeaderInfo: [],
       config: {
         data: [
-          ['平均每次TCP接收到的字节数:69.75576923076923'],
-          ['系统ip:69.75576923076923'],
-          ['系统端口:69.75576923076923'],
-          ['关闭连接数:69.75576923076923'],
-          ['处理packet平均耗时:69.75576923076923'],
-          ['数据显示次数:69.75576923076923']
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
         ],
         rowNum: 1,
         oddRowBGC: 'rgba(17, 28, 53, 0.6)',
@@ -62,145 +66,220 @@ export default {
         waitTime: 2000,
         align: ['center', 'center']
       },
-      /**
- *
- * ['平均每次TCP接收到的字节数', '平均每次TCP接收到的字节数'],
-          ['系统ip', '系统ip'],
-          ['系统端口', '系统端口'],
-          ['关闭连接数', '关闭连接数'],
-          ['处理packet平均耗时', '处理packet平均耗时'],
-          ['处理消息包耗时', '处理消息包耗时'],
-          ['处理了的消息包数', '处理了的消息包数'],
-          ['监控id', '监控id'],
-          ['longtime', 'longtime'],
-          ['在线用户数', '在线用户数'],
-          ['平均每次TCP接收到的业务包数', '平均每次TCP接收到的业务包数'],
-          ['接收到消息字节数', '接收到消息字节数'],
-          ['接收到消息包', '接收到消息包'],
-          ['本IP已接收了多少次TCP数据包', '本IP已接收了多少次TCP数据包'],
-          ['发送了的字节数', '发送了的字节数'],
-          ['发送了的消息包数', '发送了的消息包数'],
-          ['服务端ip', '服务端ip'],
-          ['服务端端口', '服务端端口'],
-          ['采集时间', '采集时间']
- */
-      data3: [
-        {
-          currentTime: 1681031748476,
-          total: 0.0,
-          data: [
-            {
-              bytesPerTcpReceive: 69.75576923076923,
-              clientIp: '172.16.0.1',
-              clientPort: 54686,
-              closed: 317,
-              handledCostsPerPacket: 12.0,
-              handledPacketCosts: 6246,
-              handledPackets: 520,
-              id: '64327f08c76e414bdb50c9c9',
-              longtime: '1681030860087',
-              onlineCount: 1,
-              packetsPerTcpReceive: 1.001923076923077,
-              receivedBytes: 36273,
-              receivedPackets: 521,
-              receivedTcps: 520,
-              sentBytes: 11472,
-              sentPackets: 529,
-              serverIP: '172.16.0.16',
-              serverPort: 5666,
-              time: '2023-04-09 17:01:00'
-            },
-            {
-              bytesPerTcpReceive: 77.39159405433111,
-              clientIp: '101.71.37.62',
-              clientPort: 8018,
-              closed: 331,
-              handledCostsPerPacket: 9.0,
-              handledPacketCosts: 17639,
-              handledPackets: 1956,
-              id: '64327f0849613a7ef8cd258d',
-              longtime: '1681030860440',
-              onlineCount: 1,
-              packetsPerTcpReceive: 1.0030753459764223,
-              receivedBytes: 150991,
-              receivedPackets: 1957,
-              receivedTcps: 1951,
-              sentBytes: 46186,
-              sentPackets: 2006,
-              serverIP: '172.16.1.26',
-              serverPort: 5666,
-              time: '2023-04-09 17:01:00'
-            }
-          ],
-          resultCode: 1,
-          count: 28
-        }
-      ]
+      config1: {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      },
+      config2: {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      },
+      config3: {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      },
+      data3: [],
+      name2: {},
+      name3: {},
+      name1: {},
+      name: {}
     }
   },
   created() {},
   mounted() {
-    // this.getData()
+    this.getRequest()
   },
 
   methods: {
+    getRequest() {
+      this.$axios({
+        methods: 'get',
+        url: api.tableErr,
+        params: {
+          secret: '738616019746446fbe5df582aadeb850',
+          time: 1680789750,
+          access_token: this.$store.state.token
+        }
+      })
+        .then((res) => {
+          // debugger
+          const { data } = res.data
+          this.data3 = data
+          console.log(res)
+          this.getData()
+          this.getDataCopy()
+          this.getDataCopyC()
+          this.getDataCopyCc()
+          // console.log(this.data3[0])
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getData() {
       const dataArr = []
-      const dataArr2 = []
-      for (let i = 0; i < Object.values(this.data3[0].data[0]).length; i++) {
-        if (Object.keys(this.data3[0].data[0])[i] === 'clientIp') {
-          continue
-        }
-        // console.log(Object.keys(this.data3[0].data[0])[i])
+
+      const { activeAt, summary, ...rest } = this.data3[0]
+
+      this.name3 = { activeAt, summary }
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[0][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
         dataArr.push([
-          (this.config.data[i][0] += `:<br/>${
-            Object.values(this.data3[0].data[0])[i]
-          }`)
-        ])
-        // console.log(dataArr)
-      }
-      for (let i = 0; i < Object.values(this.data3[0].data[1]).length; i++) {
-        if (Object.keys(this.data3[0].data[1])[i] === 'clientIp') {
-          continue
-        }
-        dataArr2.push([
-          (this.config.data[i][1] += `:<br/>${
-            Object.values(this.data3[0].data[1])[i]
-          }`)
+          (this.config.data[i] += `:${Object.values(filteredObj)[i]}`)
+          // (this.config.data[i] += `:<br/>${Object.values(filteredObj)[i]}`)
         ])
       }
-
-      dataArr.forEach((i, index) => {
-        i.push(dataArr2[index].join())
-      })
-
+      // console.log(dataArr)
       this.config = {
         data: dataArr,
-        rowNum: 10,
+        rowNum: 1,
         oddRowBGC: 'rgba(17, 28, 53, 0.6)',
         evenRowBGC: 'rgba(5, 36, 84, 0.6)',
         waitTime: 2000,
         align: ['center', 'center']
       }
-      const headerArr = []
-      Object.keys(this.data3[0].data[0]).forEach((i) => {
-        // console.log(Object.keys(this.data3[0].data[0])[i])
-        if (i === 'clientIp') {
-          headerArr.push(this.data3[0].data[0][i])
-        }
-      })
-      this.tableHeaderInfo = headerArr
+    },
+    getDataCopy() {
+      const dataArr2 = []
+      // console.log(dataArr2)
+
+      const { activeAt, summary, ...rest } = this.data3[1]
+
+      // console.log(rest)
+      this.name2 = { activeAt, summary }
+
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[1][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
+        dataArr2.push([
+          (this.config1.data[i] += `:${Object.values(filteredObj)[i]}`)
+        ])
+      }
+
+      this.config1 = {
+        data: dataArr2,
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+    },
+    getDataCopyC() {
+      const dataArr2 = []
+      // console.log(dataArr2)
+
+      const { activeAt, summary, ...rest } = this.data3[1]
+
+      // console.log(rest)
+      this.name1 = { activeAt, summary }
+
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[2][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
+        dataArr2.push([
+          (this.config2.data[i] += `:${Object.values(filteredObj)[i]}`)
+        ])
+      }
+
+      this.config2 = {
+        data: dataArr2,
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+    },
+    getDataCopyCc() {
+      const dataArr2 = []
+      // console.log(dataArr2)
+
+      const { activeAt, summary, ...rest } = this.data3[1]
+
+      // console.log(rest)
+      this.name = { activeAt, summary }
+
+      const filteredObj = Object.keys(rest).reduce((acc, key) => {
+        acc[key] = this.data3[3][key]
+        return acc
+      }, {})
+
+      for (let i = 0; i < Object.values(filteredObj).length; i++) {
+        dataArr2.push([
+          (this.config3.data[i] += `:${Object.values(filteredObj)[i]}`)
+        ])
+      }
+
+      this.config3 = {
+        data: dataArr2,
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 11112000,
+        align: ['center', 'center']
+      }
     }
   }
 }
 </script>
 <style scoped>
 .FootScrollTable {
-  width: 640px;
-  height: 110px;
+  width: 800px;
+  height: 148px;
   position: fixed;
   bottom: 3%;
-  left: 32%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
 }
@@ -211,7 +290,7 @@ export default {
 }
 .header2 {
   width: 100%;
-  height: 40px;
+  height: 80px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -220,21 +299,23 @@ export default {
 }
 .header2_1 {
   width: 100%;
-  height: 20px;
+  height: 28px;
   font-size: 13px;
-  line-height: 13px;
+  line-height: 28px;
+  text-align: center;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header2_2 {
   width: 100%;
-  height: 20px;
+  height: 28px;
   font-size: 13px;
-  line-height: 13px;
+  text-align: center;
+  line-height: 28px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header3 {
   width: 100%;
-  height: 40px;
+  height: 80px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -243,16 +324,18 @@ export default {
 }
 .header3_1 {
   width: 100%;
-  height: 20px;
+  height: 28px;
   font-size: 13px;
-  line-height: 13px;
+  text-align: center;
+  line-height: 28px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .header3_2 {
   width: 100%;
-  height: 20px;
+  height: 28px;
+  text-align: center;
   font-size: 13px;
-  line-height: 13px;
+  line-height: 28px;
   background-color: rgba(17, 28, 53, 0.6);
 }
 .box-logo {

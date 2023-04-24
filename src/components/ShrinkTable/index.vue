@@ -85,11 +85,11 @@ export default {
           this.dataList = [
             {
               value: Object.values(data)[1],
-              name: `最高:${Object.values(data)[1]}`
+              name: `最高在线数:${Object.values(data)[1]}`
             },
             {
               value: Object.values(data)[0],
-              name: `当前:${Object.values(data)[0]} `
+              name: `当日登陆数:${Object.values(data)[0]} `
             }
           ]
           this.initChart()

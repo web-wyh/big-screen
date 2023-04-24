@@ -10,11 +10,6 @@ body,
   background-size: cover;
 }
 
-.dv-scroll-board .rows .row-item {
-  height: auto !important;
-  font-size: 12px;
-  line-height: 20px !important;
-}
 .dv-scroll-board .rows .ceil {
   white-space: normal;
 }

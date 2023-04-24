@@ -142,10 +142,10 @@ export default {
         .then((res) => {
           const { data } = res.data
           // console.log(data)
-          // const dataCopy = [...data].reverse()
+          const dataCopy = [...data].reverse()
           const dataArr = []
           for (let i = 0; i < 5; i++) {
-            dataArr.push(data[i])
+            dataArr.push(dataCopy[i])
           }
           // console.log(dataArr)
           dataArr.map((item) => {

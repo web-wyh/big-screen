@@ -18,7 +18,8 @@ const api = {
   addRooms: `${requestAllWay}/console/addRoomsCount`,
   tableScroll: `${requestAllWay}/listenport/list`,
   pieGaupeData: `${requestAllWay}/operatortatis/list`,
-  activeData: `${requestAllWay}/console/serven/statistics`
+  activeData: `${requestAllWay}/console/serven/statistics`,
+  tableErr: `${requestAllWay}/console/get/alarmcomparison/list`
 }
 
 export default api
