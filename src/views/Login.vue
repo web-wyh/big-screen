@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import md5 from 'md5'
 import api from '../http/api'
 import { mapActions } from 'vuex'
 export default {
@@ -53,8 +54,10 @@ export default {
     }
     return {
       ruleForm: {
-        account: '861310020',
-        password: '38d634705c23f64a22c5e6c17ec10719'
+        account: '',
+        // 861310020   220807
+        // 38d634705c23f64a22c5e6c17ec10719
+        password: ''
       },
       rules: {
         account: [{ validator: validatePass, trigger: 'blur' }],
@@ -65,10 +68,15 @@ export default {
   methods: {
     ...mapActions(['setToken']),
     submitForm() {
+      const pws = md5(this.ruleForm.password)
+      console.log(this.ruleForm.password, pws)
       this.$axios({
         method: 'post',
         url: api.map,
-        params: this.ruleForm
+        params: {
+          acconut: this.ruleForm.account,
+          password: pws
+        }
       })
         .then((res) => {
           const { data } = res.data
