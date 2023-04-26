@@ -1,80 +1,80 @@
 <template>
   <div class="left_ech_1">
-    <div class="allBox">
-      <dv-border-box-8 :reverse="true" style="height: 200px">
-        <div style="height: 280px"><droplet-pattern></droplet-pattern></div>
-      </dv-border-box-8>
+    <dv-border-box-8 :reverse="true">
+      <div><droplet-pattern></droplet-pattern></div>
+    </dv-border-box-8>
 
-      <dv-border-box-8 :reverse="true">
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              当日人数统计
-            </div>
+    <dv-border-box-8 :reverse="true">
+      <div class="box" style="margin: 14px 0 20px 17px">
+        <div class="box-logo" style="width: 100%; height: 26px">
+          <div style="width: 22px; height: 26px">
+            <div class="logo-y"></div>
           </div>
-          <div style="width: 100%; height: 130px; display: flex">
-            <div style="width: 50%"><shrink-table></shrink-table></div>
-            <div style="width: 50%"><bar-line></bar-line></div>
+          <div
+            style="
+              color: #00ccff;
+              font-size: 15px;
+              line-height: 26px;
+              font-weight: bolder;
+            "
+          >
+            当日人数统计
           </div>
         </div>
-      </dv-border-box-8>
-
-      <dv-border-box-8 :reverse="true">
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              活跃用户统计
-            </div>
+        <div style="width: 100%; height: auto; display: flex">
+          <div style="width: 50%; height: 100%">
+            <shrink-table></shrink-table>
           </div>
-          <div style="width: 100%; height: 130px">
-            <broken-line></broken-line>
+          <div style="width: 50%"><bar-line></bar-line></div>
+        </div>
+      </div>
+    </dv-border-box-8>
+
+    <dv-border-box-8 :reverse="true">
+      <div class="box" style="margin: 14px 0 20px 17px">
+        <div class="box-logo" style="width: 100%; height: 26px">
+          <div style="width: 22px; height: 26px">
+            <div class="logo-y"></div>
+          </div>
+          <div
+            style="
+              color: #00ccff;
+              font-size: 15px;
+              line-height: 26px;
+              font-weight: bolder;
+            "
+          >
+            活跃用户统计
           </div>
         </div>
-      </dv-border-box-8>
+        <div style="width: 100%; height: auto">
+          <broken-line></broken-line>
+        </div>
+      </div>
+    </dv-border-box-8>
 
-      <dv-border-box-8 :reverse="true">
-        <div class="box" style="margin: 14px 0 20px 17px">
-          <div class="box-logo" style="width: 100%; height: 26px">
-            <div style="width: 22px; height: 26px">
-              <div class="logo-y"></div>
-            </div>
-            <div
-              style="
-                color: #00ccff;
-                font-size: 15px;
-                line-height: 26px;
-                font-weight: bolder;
-              "
-            >
-              运营商信息统计
-            </div>
+    <dv-border-box-8 :reverse="true">
+      <div class="box" style="margin: 14px 0 20px 17px">
+        <div class="box-logo" style="width: 100%; height: 26px">
+          <div style="width: 22px; height: 26px">
+            <div class="logo-y"></div>
           </div>
-          <div style="width: 100%; height: 110px">
-            <pie-gaupe></pie-gaupe>
+          <div
+            style="
+              color: #00ccff;
+              font-size: 15px;
+              line-height: 26px;
+              font-weight: bolder;
+            "
+          >
+            运营商信息统计
           </div>
         </div>
-      </dv-border-box-8>
-    </div>
+        <div style="width: 100%; height: auto">
+          <pie-gaupe></pie-gaupe>
+        </div>
+      </div>
+    </dv-border-box-8>
   </div>
 </template>
 
@@ -109,87 +109,83 @@ export default {
 <style scoped lang="scss">
 .left_ech_1 {
   width: 480px;
-  height: auto;
-  .allBox {
-    width: 100%;
-    height: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+
+  .box {
     display: flex;
     flex-direction: column;
-    padding: 20px 10px;
+    position: relative;
+    border-radius: 10px;
+    width: 440px;
 
-    .box {
+    background-color: rgba(1, 37, 70, 0.3);
+
+    .box-logo {
       display: flex;
-      flex-direction: column;
-      position: relative;
-      border-radius: 10px;
-      width: 440px;
-
-      background-color: rgba(1, 37, 70, 0.3);
-
-      .box-logo {
-        display: flex;
-        margin-left: 20px;
-        .logo-y {
-          height: 7px;
-          width: 7px;
-          background: #00ccff;
-          border-radius: 50px;
-          box-shadow: 0 0px 12px 3px #00ccff;
-          margin: 10px 0 0 7.5px;
-        }
+      margin-left: 20px;
+      .logo-y {
+        height: 7px;
+        width: 7px;
+        background: #00ccff;
+        border-radius: 50px;
+        box-shadow: 0 0px 12px 3px #00ccff;
+        margin: 10px 0 0 7.5px;
       }
-      .bubble {
-        background: url(../assets/img/bubble.png) no-repeat;
-        position: absolute;
-        font-size: 11px;
-        text-align: center;
-        cursor: default;
-      }
-      .allLoadRate {
-        width: 88px;
-        height: 88px;
-        background-size: 88px 88px;
-        top: 48px;
-        left: 182px;
-        -webkit-animation: bounce-down 3s linear infinite;
-        animation: bounce-down 3s linear infinite;
-      }
-      .centralCity {
-        width: 66px;
-        height: 66px;
-        background-size: 66px 66px;
-        top: 32px;
-        left: 14px;
-        -webkit-animation: bounce-down 4s linear infinite;
-        animation: bounce-down 4s linear infinite;
-      }
-      .dongxiLake {
-        width: 62px;
-        height: 62px;
-        background-size: 62px 62px;
-        top: 102px;
-        left: 14px;
-        -webkit-animation: bounce-down 5s linear infinite;
-        animation: bounce-down 5s linear infinite;
-      }
-      .jingkaiDistrict {
-        width: 62px;
-        height: 62px;
-        background-size: 62px 62px;
-        top: 18px;
-        right: 3px;
-        -webkit-animation: bounce-down 6s linear infinite;
-        animation: bounce-down 6s linear infinite;
-      }
-      .xinzhouDistrict {
-        width: 62px;
-        height: 62px;
-        background-size: 62px 62px;
-        top: 96px;
-        right: 7px;
-        -webkit-animation: bounce-down 7s linear infinite;
-        animation: bounce-down 7s linear infinite;
-      }
+    }
+    .bubble {
+      background: url(../assets/img/bubble.png) no-repeat;
+      position: absolute;
+      font-size: 11px;
+      text-align: center;
+      cursor: default;
+    }
+    .allLoadRate {
+      width: 88px;
+      height: 88px;
+      background-size: 88px 88px;
+      top: 48px;
+      left: 182px;
+      -webkit-animation: bounce-down 3s linear infinite;
+      animation: bounce-down 3s linear infinite;
+    }
+    .centralCity {
+      width: 66px;
+      height: 66px;
+      background-size: 66px 66px;
+      top: 32px;
+      left: 14px;
+      -webkit-animation: bounce-down 4s linear infinite;
+      animation: bounce-down 4s linear infinite;
+    }
+    .dongxiLake {
+      width: 62px;
+      height: 62px;
+      background-size: 62px 62px;
+      top: 102px;
+      left: 14px;
+      -webkit-animation: bounce-down 5s linear infinite;
+      animation: bounce-down 5s linear infinite;
+    }
+    .jingkaiDistrict {
+      width: 62px;
+      height: 62px;
+      background-size: 62px 62px;
+      top: 18px;
+      right: 3px;
+      -webkit-animation: bounce-down 6s linear infinite;
+      animation: bounce-down 6s linear infinite;
+    }
+    .xinzhouDistrict {
+      width: 62px;
+      height: 62px;
+      background-size: 62px 62px;
+      top: 96px;
+      right: 7px;
+      -webkit-animation: bounce-down 7s linear infinite;
+      animation: bounce-down 7s linear infinite;
     }
   }
 }

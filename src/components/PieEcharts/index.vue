@@ -8,63 +8,67 @@
 </template>
 
 <script>
-import * as echarts from "echarts";
+import * as echarts from 'echarts'
 
 export default {
-  name: "WatersupplyWebIndex",
+  name: 'WatersupplyWebIndex',
 
   data() {
     return {
       chart: null,
       dataList: [
-        { value: 52, name: "水质工单 " },
-        { value: 54, name: "水压居民工单 " },
-        { value: 56, name: "其他工单 " },
-        { value: 38, name: "水压市政管网工单 " },
-        { value: 47, name: "报漏居民工单" },
-        { value: 61, name: "营收工单" },
-        { value: 64, name: "报漏市政管网工单" },
+        { value: 52, name: '水质工单 ' },
+        { value: 54, name: '水压居民工单 ' },
+        { value: 56, name: '其他工单 ' },
+        { value: 38, name: '水压市政管网工单 ' },
+        { value: 47, name: '报漏居民工单' },
+        { value: 61, name: '营收工单' },
+        { value: 64, name: '报漏市政管网工单' }
       ],
       dataArr: [],
-      max: 0,
-    };
+      max: 0
+    }
   },
-
+  created() {
+    this.initChart()
+  },
   mounted() {
-    this.initChart();
+    setInterval(() => {
+      this.initChart()
+    }, 90000)
   },
 
   methods: {
     initChart() {
-      this.chart = echarts.init(document.getElementById("pieEch"));
-      let num = 0;
-      this.dataList.forEach((item) => (num += item.value));
-      this.max = num;
+      this.chart = echarts.init(document.getElementById('pieEch'))
+      let num = 0
+      this.dataList.forEach((item) => (num += item.value))
+      this.max = num
       this.dataList.forEach((item) => {
         this.dataArr.push({
           value: item.value,
-          name: `${item.name}: ${item.value}`,
-        });
-      });
+          name: `${item.name}: ${item.value}`
+        })
+      })
       this.chart.setOption({
         series: [
           {
-            name: "Access From",
-            type: "pie",
-            radius: ["50%", "70%"],
+            name: 'Access From',
+            type: 'pie',
+            radius: ['50%', '70%'],
             itemStyle: {
               borderRadius: 30,
-              borderColor: "#012546",
-              borderWidth: 4,
+              borderColor: '#012546',
+              borderWidth: 4
             },
             color: [
-              "#00cdff",
-              "#0195fe",
-              "#fe7775",
-              "#ffcc00",
-              "#01ffff",
-              "#91defe",
-              "#8dffad",
+              '#00cdff',
+              '#0195fe',
+              '#fe7775',
+              '#ffcc00',
+              '#01ffff',
+              '#91defe',
+              '#8dffad'
             ],
             data: this.dataArr,
 
@@ -72,18 +76,18 @@ export default {
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
             },
             label: {
-              color: "#fff",
-            },
-          },
-        ],
-      });
-    },
-  },
-};
+              color: '#fff'
+            }
+          }
+        ]
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

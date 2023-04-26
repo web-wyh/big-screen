@@ -18,6 +18,13 @@ export default {
   created() {
     this.requestPieData()
   },
+  mounted() {
+    setInterval(() => {
+      this.dataArr = []
+      this.dataList = []
+      this.requestPieData()
+    }, 90000)
+  },
   methods: {
     /* 初始化charts */
     initChart() {
@@ -107,7 +114,7 @@ export default {
 
 <style scoped lang="scss">
 #pieGaupe {
-  height: 110px;
+  height: calc(100vh / 4 - 100px);
   width: 460px;
 }
 </style>

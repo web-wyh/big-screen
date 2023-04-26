@@ -1,8 +1,6 @@
 <template>
   <div class="supplyTableRightEcharts">
-    <div class="rightEch">
-      <right-echarts-components></right-echarts-components>
-    </div>
+    <right-echarts-components></right-echarts-components>
   </div>
 </template>
 
@@ -26,18 +24,12 @@ export default {
 <style scoped lang="scss">
 .supplyTableRightEcharts {
   width: 480px;
-  height: calc(100vh - 60px);
+  height: calc(100% - 80px);
   position: fixed;
   top: 60px;
   right: 8px;
   z-index: 9999;
   color: #fff;
-  font-size: 50px;
-  overflow-y: scroll;
-}
-.rightEch {
-  width: 100%;
-  height: calc(100vh - 60px);
-  margin-bottom: 13px;
+  // overflow-y: scroll;
 }
 </style>

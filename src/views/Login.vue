@@ -74,7 +74,7 @@ export default {
         method: 'post',
         url: api.map,
         params: {
-          acconut: this.ruleForm.account,
+          account: this.ruleForm.account,
           password: pws
         }
       })

@@ -20,8 +20,13 @@ export default {
   created() {
     this.requestAddRooms()
   },
-  mounted() {},
-
+  mounted() {
+    setInterval(() => {
+      this.chartName = []
+      this.chartData = []
+      this.requestAddRooms()
+    }, 90000)
+  },
   methods: {
     initChart() {
       this.chart = echarts.init(document.getElementById('brokenLine2'))
@@ -172,7 +177,8 @@ export default {
 <style lang="scss" scoped>
 #brokenLine2 {
   width: 230px;
-  height: 120px;
+  height: calc(100vh / 4 - 100px);
+
   z-index: 9999;
 }
 </style>

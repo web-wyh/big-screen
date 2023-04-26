@@ -19,19 +19,23 @@ export default {
       timer: null,
       chartData: [],
       chartName: [],
-      chart: null,
-      max: ''
+      chart: null
     }
   },
   created() {
     this.requestRegister()
   },
-  mounted() {},
+  mounted() {
+    this.chartData = []
+    this.chartName = []
+    setInterval(() => {
+      this.requestRegister()
+    }, 90000)
+  },
 
   methods: {
     initChart() {
       this.chart = echarts.init(document.getElementById('histogramEch'))
-      this.max = Math.max.apply(null, this.chartData)
       this.chart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -108,7 +112,7 @@ export default {
           }
         ]
       })
-      // this.timechartes()
+      this.timechartes()
     },
     clearTimer() {
       clearInterval(this.timer)
@@ -146,7 +150,7 @@ export default {
         .then((res) => {
           const { data } = res.data
           const dataCopy = [...data].reverse()
-          console.log(data)
+          // console.log(data)
           const dataArr = []
           for (let i = 0; i < 7; i++) {
             dataArr.push(dataCopy[i])
@@ -171,7 +175,7 @@ export default {
 
 <style lang="scss" scoped>
 #histogramEch {
-  height: 130px;
+  height: calc(100vh / 4 - 100px);
   width: 100%;
 }
 </style>

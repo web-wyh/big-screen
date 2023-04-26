@@ -21,6 +21,13 @@ export default {
   created() {
     this.requestSingleChat()
   },
+  mounted() {
+    setInterval(() => {
+      this.chartData = []
+      this.chartName = []
+      this.requestSingleChat()
+    }, 90000)
+  },
 
   methods: {
     initChart() {
@@ -159,7 +166,7 @@ export default {
 <style lang="scss" scoped>
 #shadowBrokenLine {
   width: 450px;
-  height: 130px;
+  height: calc(100vh / 4 - 100px);
   z-index: 9999;
 }
 </style>

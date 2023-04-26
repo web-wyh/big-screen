@@ -22,6 +22,14 @@ export default {
   created() {
     this.requestActive()
   },
+  mounted() {
+    setInterval(() => {
+      this.chartData = []
+      this.chartName = []
+      this.chartData1 = []
+      this.requestActive()
+    }, 90000)
+  },
 
   methods: {
     initChart() {
@@ -214,7 +222,7 @@ export default {
           const { data } = res.data
           const dataCopy1 = data.servenUserActive
           const dataCopy2 = data.servenNew
-
+          console.log(res)
           for (let i = 0; i < 7; i++) {
             this.chartName.push(
               Object.keys(dataCopy1)[i].slice(
@@ -228,21 +236,7 @@ export default {
           for (let i = 0; i < 7; i++) {
             this.chartData1.push(Object.values(dataCopy2)[i])
           }
-          // const dataArr1 = []
-          // for (let i = 0; i < 7; i++) {
-          //   dataArr.push(dataCopy2[i])
-          // }
 
-          // dataArr.map((item) => {
-          //   this.chartName.push(
-          //     Object.keys(item)[0].slice(5, Object.keys(item)[0].length)
-          //   )
-          //   this.chartData.push(Object.values(item)[0])
-          // })
-
-          // dataArr1.map((item) => {
-          //   this.chartData1.push(Object.values(item)[0])
-          // })
           this.initChart()
         })
         .catch((err) => {
@@ -256,7 +250,7 @@ export default {
 <style lang="scss" scoped>
 #brokenLine {
   width: 450px;
-  height: 150px;
+  height: calc(100vh / 4 - 100px);
   z-index: 9999;
 }
 </style>

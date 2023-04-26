@@ -18,23 +18,23 @@
       </div>
     </div>
     <div class="header2">
-      <div>
+      <div v-show="name3.activeAt !== undefined">
         <div class="header2_1">
           {{ `${name3.activeAt}:${name3.summary}` }}
         </div>
         <dv-scroll-board :config="config" style="width: 400px; height: 40px" />
       </div>
-      <div>
+      <div v-show="name2.activeAt !== undefined">
         <div class="header2_2">{{ `${name2.activeAt}:${name2.summary}` }}</div>
         <dv-scroll-board :config="config1" style="width: 400px; height: 40px" />
       </div>
     </div>
     <div class="header3">
-      <div>
+      <div v-show="name1.activeAt !== undefined">
         <div class="header3_1">{{ `${name1.activeAt}:${name1.summary}` }}</div>
         <dv-scroll-board :config="config2" style="width: 400px; height: 40px" />
       </div>
-      <div>
+      <div v-show="name.activeAt !== undefined">
         <div class="header3_2">{{ `${name.activeAt}:${name.summary}` }}</div>
         <dv-scroll-board :config="config3" style="width: 400px; height: 40px" />
       </div>
@@ -124,9 +124,18 @@ export default {
       name: {}
     }
   },
-  created() {},
-  mounted() {
+  created() {
     this.getRequest()
+  },
+  mounted() {
+    setInterval(() => {
+      this.data3 = []
+      this.name2 = {}
+      this.name3 = {}
+      this.name1 = {}
+      this.name = {}
+      this.getRequest()
+    }, 90000)
   },
 
   methods: {
@@ -144,11 +153,29 @@ export default {
           // debugger
           const { data } = res.data
           this.data3 = data
-          console.log(res)
-          this.getData()
-          this.getDataCopy()
-          this.getDataCopyC()
-          this.getDataCopyCc()
+          console.log(data)
+          // console.log(data.length)
+          if (data.length === 1) {
+            this.getData()
+          } else if (data.length === 2) {
+            this.getData()
+
+            this.getDataCopy()
+          } else if (data.length === 3) {
+            this.getData()
+            this.getDataCopy()
+            this.getDataCopyC()
+          } else if (data.length === 4) {
+            this.getData()
+            this.getDataCopy()
+            this.getDataCopyC()
+            this.getDataCopyCc()
+          } else {
+            this.getData()
+            this.getDataCopy()
+            this.getDataCopyC()
+            this.getDataCopyCc()
+          }
           // console.log(this.data3[0])
         })
         .catch((err) => {
@@ -158,7 +185,7 @@ export default {
     getData() {
       const dataArr = []
 
-      const { activeAt, summary, ...rest } = this.data3[0]
+      const { activeAt, summary, ...rest } = this?.data3[0]
 
       this.name3 = { activeAt, summary }
       const filteredObj = Object.keys(rest).reduce((acc, key) => {
@@ -186,7 +213,7 @@ export default {
       const dataArr2 = []
       // console.log(dataArr2)
 
-      const { activeAt, summary, ...rest } = this.data3[1]
+      const { activeAt, summary, ...rest } = this?.data3[1]
 
       // console.log(rest)
       this.name2 = { activeAt, summary }
@@ -215,7 +242,7 @@ export default {
       const dataArr2 = []
       // console.log(dataArr2)
 
-      const { activeAt, summary, ...rest } = this.data3[1]
+      const { activeAt, summary, ...rest } = this?.data3[2]
 
       // console.log(rest)
       this.name1 = { activeAt, summary }
@@ -244,7 +271,7 @@ export default {
       const dataArr2 = []
       // console.log(dataArr2)
 
-      const { activeAt, summary, ...rest } = this.data3[1]
+      const { activeAt, summary, ...rest } = this?.data3[3]
 
       // console.log(rest)
       this.name = { activeAt, summary }

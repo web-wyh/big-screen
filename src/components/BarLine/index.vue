@@ -36,7 +36,7 @@ export default {
           top: '3%',
           right: '18%',
           left: '-10%',
-          bottom: '2%',
+          bottom: '10%',
           containLabel: true
         },
         xAxis: [
@@ -274,7 +274,7 @@ export default {
 <style lang="scss" scoped>
 #Bar {
   width: 230px;
-  height: 130px;
+  height: calc(100vh / 4 - 60px);
   z-index: 9999;
 }
 </style>

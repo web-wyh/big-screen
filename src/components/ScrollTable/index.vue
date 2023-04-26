@@ -97,9 +97,16 @@ export default {
       name2: {}
     }
   },
-  created() {},
-  mounted() {
+  created() {
     this.getTableRequest()
+  },
+  mounted() {
+    // setInterval(() => {
+    //   this.data3 = []
+    //   this.name3 = {}
+    //   this.name2 = {}
+    //   this.getTableRequest()
+    // }, 90000)
   },
 
   methods: {
@@ -119,7 +126,7 @@ export default {
           // debugger
           const { data } = res.data
           this.data3 = data
-          console.log(data)
+          // console.log(data)
           this.getData()
           this.getDataCopy()
         })
@@ -134,7 +141,7 @@ export default {
       // console.log(rest)
 
       this.name3 = { serverIP }
-      console.log(rest)
+      // console.log(rest)
 
       const filteredObj = Object.keys(rest).reduce((acc, key) => {
         acc[key] = this.data3[0][key]

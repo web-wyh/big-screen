@@ -20,7 +20,13 @@ export default {
   created() {
     this.requestAddFriends()
   },
-  mounted() {},
+  mounted() {
+    setInterval(() => {
+      this.chartName = []
+      this.chartName = []
+      this.requestAddFriends()
+    }, 90000)
+  },
 
   methods: {
     initChart() {
@@ -171,7 +177,7 @@ export default {
 <style lang="scss" scoped>
 #brokenLine1 {
   width: 230px;
-  height: 120px;
+  height: calc(100vh / 4 - 100px);
   z-index: 9999;
 }
 </style>

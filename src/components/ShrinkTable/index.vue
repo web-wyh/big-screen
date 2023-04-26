@@ -15,8 +15,17 @@ export default {
       dataArr: []
     }
   },
-  mounted() {
+  created() {
     this.requestMax()
+  },
+
+  mounted() {
+    const timer = setInterval(() => {
+      clearInterval(timer)
+      this.dataArr = []
+      this.dataList = []
+      this.requestMax()
+    }, 90000)
   },
   methods: {
     /* 初始化charts */
@@ -104,7 +113,7 @@ export default {
 
 <style scoped lang="scss">
 #pie1 {
-  height: 130px;
+  height: calc(100vh / 4 - 100px);
   width: 230px;
 }
 </style>

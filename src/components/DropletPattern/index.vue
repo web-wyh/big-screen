@@ -104,7 +104,12 @@ export default {
   created() {
     this.requestShuidi()
   },
-  mounted() {},
+  mounted() {
+    setInterval(() => {
+      this.dataList = []
+      this.requestShuidi()
+    }, 90000)
+  },
 
   methods: {
     requestShuidi() {
@@ -161,7 +166,7 @@ export default {
   position: relative;
   border-radius: 10px;
   width: 440px;
-  height: 200px;
+  height: calc(100vh / 4 - 100px);
   background-color: rgba(1, 37, 70, 0.3);
 
   .box-logo {

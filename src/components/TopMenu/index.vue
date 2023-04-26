@@ -65,7 +65,7 @@ export default {
       setInterval(() => {
         this.date = `${day.getFullYear()}-${
           day.getMonth() + 1
-        }-${day.getDate()} ${moment().format('h:mm:ss')}`
+        }-${day.getDate()} ${moment().format('HH:mm:ss')}`
       }, 1000)
     }
   }
@@ -76,7 +76,7 @@ export default {
   width: 100%;
   height: 80px;
   background: url(../../assets/img/nav.png) no-repeat;
-  background-position: 0px -40px;
+  background-position: 0px -50px;
   position: fixed;
   background-size: 100%;
 }

@@ -27,14 +27,14 @@ export default {
 <style scoped lang="scss">
 .bigScreenLeftEch {
   width: 480px;
-  height: calc(100vh - 60px);
+  height: calc(100% - 80px);
   position: fixed;
   top: 60px;
   left: 8px;
   z-index: 9999;
   color: #fff;
-  font-size: 50px;
-  overflow-y: scroll;
+  // font-size: 50px;
+  // overflow-y: scroll;
 }
 .topEcharts {
   width: 100%;
