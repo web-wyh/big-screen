@@ -166,7 +166,7 @@ export default {
   position: relative;
   border-radius: 10px;
   width: 440px;
-  height: calc(100vh / 4 - 100px);
+  height: 200px;
   background-color: rgba(1, 37, 70, 0.3);
 
   .box-logo {

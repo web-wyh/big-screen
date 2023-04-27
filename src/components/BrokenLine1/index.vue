@@ -146,6 +146,8 @@ export default {
         }
       })
         .then((res) => {
+          this.chartName = []
+          this.chartName = []
           const { data } = res.data
           const dataCopy = [...data].reverse()
           const dataArr = []

@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div
-      id="histogramEch"
-      @mouseover="clearTimer"
-      @mouseout="timechartes"
-    ></div>
+    <div id="histogramEch"></div>
+    <!-- @mouseover="clearTimer"
+      @mouseout="timechartes" -->
   </div>
 </template>
 
@@ -28,7 +26,8 @@ export default {
   mounted() {
     this.chartData = []
     this.chartName = []
-    setInterval(() => {
+    const timerId = setInterval(() => {
+      clearInterval(timerId)
       this.requestRegister()
     }, 90000)
   },
@@ -112,31 +111,31 @@ export default {
           }
         ]
       })
-      this.timechartes()
+      // this.timechartes()
     },
-    clearTimer() {
-      clearInterval(this.timer)
-    },
-    timechartes() {
-      this.timer = setInterval(() => {
-        const lastData = this.chartData.pop()
-        const lastNameData = this.chartName.pop()
-        this.chartData.unshift(lastData)
-        this.chartName.unshift(lastNameData)
-        this.chart.setOption({
-          xAxis: [
-            {
-              data: this.chartName.map((item) => item)
-            }
-          ],
-          series: [
-            {
-              data: this.chartData.map((item) => item)
-            }
-          ]
-        })
-      }, 3000)
-    },
+    // clearTimer() {
+    //   clearInterval(this.timer)
+    // },
+    // timechartes() {
+    //   this.timer = setInterval(() => {
+    //     const lastData = this.chartData.pop()
+    //     const lastNameData = this.chartName.pop()
+    //     this.chartData.unshift(lastData)
+    //     this.chartName.unshift(lastNameData)
+    //     this.chart.setOption({
+    //       xAxis: [
+    //         {
+    //           data: this.chartName.map((item) => item)
+    //         }
+    //       ],
+    //       series: [
+    //         {
+    //           data: this.chartData.map((item) => item)
+    //         }
+    //       ]
+    //     })
+    //   }, 3000)
+    // },
     requestRegister() {
       this.$axios({
         methods: 'get',
@@ -148,6 +147,8 @@ export default {
         }
       })
         .then((res) => {
+          this.chartData = []
+          this.chartName = []
           const { data } = res.data
           const dataCopy = [...data].reverse()
           // console.log(data)

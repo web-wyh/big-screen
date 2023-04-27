@@ -79,11 +79,22 @@ export default {
         }
       })
         .then((res) => {
-          const { data } = res.data
-          const token = data.access_Token
-          sessionStorage.setItem('token', token)
-          this.$store.dispatch('setToken', token) // 分发action并触发mutation
-          this.$router.push('/bigScreen')
+          const { data } = res
+          if (
+            data.resultMsg === '帐号或密码错误' ||
+            data.resultMsg === '帐号不存在'
+          ) {
+            const h = this.$createElement
+            this.$message({
+              message: h('p', null, [h('span', null, `${data.resultMsg}`)])
+            })
+          } else {
+            const { data } = res.data
+            const token = data.access_Token
+            sessionStorage.setItem('token', token)
+            this.$store.dispatch('setToken', token) // 分发action并触发mutation
+            this.$router.push('/bigScreen')
+          }
           console.log(this.$store.state.token)
         })
         .catch((err) => {

@@ -94,14 +94,15 @@ export default {
       },
       data3: [],
       name3: {},
-      name2: {}
+      name2: {},
+      timer: null
     }
   },
   created() {
     this.getTableRequest()
   },
   mounted() {
-    // setInterval(() => {
+    // this.timer = setInterval(() => {
     //   this.data3 = []
     //   this.name3 = {}
     //   this.name2 = {}
@@ -111,6 +112,7 @@ export default {
 
   methods: {
     getTableRequest() {
+      clearInterval(this.timer)
       this.$axios({
         methods: 'get',
         url: api.tableScroll,
@@ -123,6 +125,9 @@ export default {
         }
       })
         .then((res) => {
+          this.data3 = []
+          this.name3 = {}
+          this.name2 = {}
           // debugger
           const { data } = res.data
           this.data3 = data

@@ -128,14 +128,14 @@ export default {
     this.getRequest()
   },
   mounted() {
-    setInterval(() => {
-      this.data3 = []
-      this.name2 = {}
-      this.name3 = {}
-      this.name1 = {}
-      this.name = {}
-      this.getRequest()
-    }, 90000)
+    // setInterval(() => {
+    //   this.data3 = []
+    //   this.name2 = {}
+    //   this.name3 = {}
+    //   this.name1 = {}
+    //   this.name = {}
+    //   this.getRequest()
+    // }, 90000)
   },
 
   methods: {
