@@ -761,7 +761,6 @@ export default {
           this.Province.push(Province);            
         }).catch(err => {
           console.log(err);
-          console.log(err);
         })
       })    
     }
