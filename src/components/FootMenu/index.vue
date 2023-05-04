@@ -22,11 +22,11 @@
         <div class="header2_1">
           {{ `${name3.activeAt}:${name3.summary}` }}
         </div>
-        <dv-scroll-board :config="config" style="width: 400px; height: 40px" />
+        <dv-scroll-board :config="config" style="width: 400px; height: 28px" />
       </div>
       <div v-show="name2.activeAt !== undefined">
         <div class="header2_2">{{ `${name2.activeAt}:${name2.summary}` }}</div>
-        <dv-scroll-board :config="config1" style="width: 400px; height: 40px" />
+        <dv-scroll-board :config="config1" style="width: 400px; height: 28px" />
       </div>
     </div>
     <div class="header3">
@@ -153,13 +153,11 @@ export default {
           // debugger
           const { data } = res.data
           this.data3 = data
-          console.log(data)
-          // console.log(data.length)
+
           if (data.length === 1) {
             this.getData()
           } else if (data.length === 2) {
             this.getData()
-
             this.getDataCopy()
           } else if (data.length === 3) {
             this.getData()
@@ -199,6 +197,7 @@ export default {
           // (this.config.data[i] += `:<br/>${Object.values(filteredObj)[i]}`)
         ])
       }
+
       // console.log(dataArr)
       this.config = {
         data: dataArr,
@@ -292,7 +291,7 @@ export default {
         rowNum: 1,
         oddRowBGC: 'rgba(17, 28, 53, 0.6)',
         evenRowBGC: 'rgba(5, 36, 84, 0.6)',
-        waitTime: 11112000,
+        waitTime: 2000,
         align: ['center', 'center']
       }
     }
@@ -317,7 +316,7 @@ export default {
 }
 .header2 {
   width: 100%;
-  height: 80px;
+  height: 56px;
   display: flex;
   text-align: center;
   color: #fff;
@@ -364,6 +363,22 @@ export default {
   font-size: 13px;
   line-height: 28px;
   background-color: rgba(17, 28, 53, 0.6);
+}
+::v-deep.dv-scroll-board .rows {
+  height: 28px !important;
+  font-size: 12px;
+  line-height: 28px !important;
+}
+::v-deep.dv-scroll-board .rows .row-item {
+  height: 28px !important;
+  font-size: 12px;
+  line-height: 28px !important;
+}
+::v-deep.dv-scroll-board .rows .row-item .ceil {
+  width: 100% !important;
+  height: 28px !important;
+  font-size: 12px;
+  line-height: 28px !important;
 }
 .box-logo {
   display: flex;

@@ -1,6 +1,5 @@
 <template>
   <div class="left_ech_1">
-    <!-- <dv-border-box-1 style="width: 580px; height: auto"> -->
     <dv-border-box-8 style="height: 200px">
       <div style="height: 200px; width: 100%">
         <scroll-table></scroll-table>
@@ -49,13 +48,11 @@
         </div>
 
         <div style="width: 100%; height: auto">
-          <!-- <broken-line></broken-line> -->
           <histogram-echarts></histogram-echarts>
         </div>
       </div>
     </dv-border-box-8>
 
-    <!-- <dv-scroll-board :config="config" style="width: 480px; height: 160px" /> -->
     <dv-border-box-8>
       <div class="box" style="margin: 14px 0 20px 17px">
         <div class="box-logo" style="width: 100%; height: 26px">
@@ -79,13 +76,11 @@
           <div style="width: 50%"><broken-line2></broken-line2></div>
         </div>
       </div>
-      <!--  -->
     </dv-border-box-8>
   </div>
 </template>
 
 <script>
-// import * as echarts from 'echarts'
 import ShrinkTable from './ShrinkTable'
 import BarLine from './BarLine'
 import ScrollTable from './ScrollTable'

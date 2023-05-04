@@ -14,14 +14,13 @@ export default {
     return {
       chart: null,
       chartName: [],
-      chartData: []
+      chartData: [],
+      timerId: null
     }
   },
   created() {
     this.requestAddRooms()
-  },
-  mounted() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.chartName = []
       this.chartData = []
       this.requestAddRooms()
@@ -170,6 +169,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
@@ -177,7 +179,7 @@ export default {
 <style lang="scss" scoped>
 #brokenLine2 {
   width: 230px;
-  height: calc(100vh / 4 - 100px);
+  height: calc(100vh / 4 - 80px);
 
   z-index: 9999;
 }

@@ -6,8 +6,9 @@ body,
 #bigScreen {
   width: 100vw;
   height: 100vh;
-  background: url(../img/bgscreen.jpeg) no-repeat;
-  background-size: cover;
+  /* background: url(../img/bgscreen.jpeg) no-repeat;
+  background-size: cover; */
+  background: #012546;
 }
 
 .dv-scroll-board .rows .ceil {

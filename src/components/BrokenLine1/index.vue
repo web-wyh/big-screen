@@ -14,19 +14,19 @@ export default {
     return {
       chart: null,
       chartName: [],
-      chartData: []
+      chartData: [],
+      timerId: null
     }
   },
   created() {
     this.requestAddFriends()
-  },
-  mounted() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.chartName = []
       this.chartName = []
       this.requestAddFriends()
     }, 90000)
   },
+  mounted() {},
 
   methods: {
     initChart() {
@@ -172,6 +172,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
@@ -179,7 +182,7 @@ export default {
 <style lang="scss" scoped>
 #brokenLine1 {
   width: 230px;
-  height: calc(100vh / 4 - 100px);
+  height: calc(100vh / 4 - 80px);
   z-index: 9999;
 }
 </style>

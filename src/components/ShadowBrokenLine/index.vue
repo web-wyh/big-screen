@@ -14,20 +14,30 @@ export default {
     return {
       chart: null,
       chartName: [],
-      chartData: []
+      chartData: [],
+      intervalId: null
     }
   },
 
   created() {
     this.requestSingleChat()
-  },
-  mounted() {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.chartData = []
       this.chartName = []
       this.requestSingleChat()
     }, 90000)
   },
+
+  // watch: {
+  //   chartData(newValue, oldValue) {
+  //     if (newValue !== oldValue) {
+  //       console.log(newValue)
+  //       console.log(oldValue)
+  //     } else {
+  //       console.log('没有变化1111111')
+  //     }
+  //   }
+  // },
 
   methods: {
     initChart() {
@@ -159,6 +169,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.intervalId)
   }
 }
 </script>
@@ -166,7 +179,7 @@ export default {
 <style lang="scss" scoped>
 #shadowBrokenLine {
   width: 450px;
-  height: calc(100vh / 4 - 100px);
+  height: calc((100vh - 80px) / 4);
   z-index: 9999;
 }
 </style>

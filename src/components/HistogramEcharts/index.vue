@@ -17,17 +17,15 @@ export default {
       timer: null,
       chartData: [],
       chartName: [],
-      chart: null
+      chart: null,
+      timerId: null
     }
   },
   created() {
     this.requestRegister()
-  },
-  mounted() {
-    this.chartData = []
-    this.chartName = []
-    const timerId = setInterval(() => {
-      clearInterval(timerId)
+    this.timerId = setInterval(() => {
+      this.chartData = []
+      this.chartName = []
       this.requestRegister()
     }, 90000)
   },
@@ -170,13 +168,16 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 #histogramEch {
-  height: calc(100vh / 4 - 100px);
+  height: calc((100vh - 80px) / 4);
   width: 100%;
 }
 </style>

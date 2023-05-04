@@ -100,16 +100,67 @@ export default {
   },
   created() {
     this.getTableRequest()
+    this.timer = setInterval(() => {
+      this.config = {
+        data: [
+          ['平均每次TCP接收到的字节数'],
+          ['系统IP'],
+          ['系统端口'],
+          ['关闭连接数'],
+          ['处理packet平均耗时'],
+          ['处理消息包耗时'],
+          ['处理了的消息包数'],
+          ['监控id'],
+          ['longtime'],
+          ['在线用户数'],
+          ['平均每次TCP接收到的业务包数'],
+          ['接收到消息字节数'],
+          ['接收到消息包'],
+          ['本IP已接收了多少次TCP数据包'],
+          ['发送了的字节数'],
+          ['发送了的消息包数'],
+          ['服务端端口'],
+          ['采集时间']
+        ],
+        rowNum: 8,
+        oddRowBGC: '#273e56',
+        evenRowBGC: '#111c35',
+        waitTime: 1000000,
+        align: ['center', 'center']
+      }
+      this.config1 = {
+        data: [
+          ['平均每次TCP接收到的字节数'],
+          ['系统端口'],
+          ['系统IP'],
+          ['关闭连接数'],
+          ['处理packet平均耗时'],
+          ['处理消息包耗时'],
+          ['处理了的消息包数'],
+          ['监控id'],
+          ['longtime'],
+          ['在线用户数'],
+          ['平均每次TCP接收到的业务包数'],
+          ['接收到消息字节数'],
+          ['接收到消息包'],
+          ['本IP已接收了多少次TCP数据包'],
+          ['发送了的字节数'],
+          ['发送了的消息包数'],
+          ['服务端端口'],
+          ['采集时间']
+        ],
+        rowNum: 8,
+        oddRowBGC: '#273e56',
+        evenRowBGC: '#111c35',
+        waitTime: 1000000,
+        align: ['center', 'center']
+      }
+      this.data3 = []
+      this.name3 = {}
+      this.name2 = {}
+      this.getTableRequest()
+    }, 90000)
   },
-  mounted() {
-    // this.timer = setInterval(() => {
-    //   this.data3 = []
-    //   this.name3 = {}
-    //   this.name2 = {}
-    //   this.getTableRequest()
-    // }, 90000)
-  },
-
   methods: {
     getTableRequest() {
       clearInterval(this.timer)
@@ -195,6 +246,9 @@ export default {
         align: ['center', 'center']
       }
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }
 </script>
