@@ -22,7 +22,7 @@ export default {
     this.requestAddFriends()
     this.timerId = setInterval(() => {
       this.chartName = []
-      this.chartName = []
+      this.chartData = []
       this.requestAddFriends()
     }, 90000)
   },

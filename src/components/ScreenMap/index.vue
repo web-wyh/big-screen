@@ -299,7 +299,7 @@ export default {
                 zlevel: -1,
                 zoom: 1.0,
                 silent: true,
-                layoutCenter: ['50%', '50%'],
+                layoutCenter: ['50%', '60%'],
                 layoutSize: '100%',
                 roam: false,
                 itemStyle: {
@@ -332,7 +332,7 @@ export default {
                 show: true,
                 map: name,
                 zoom: 1.0,
-                layoutCenter: ['50%', '50%'],
+                layoutCenter: ['50%', '60%'],
                 layoutSize: '100%',
                 label: {
                   normal: {
@@ -420,7 +420,7 @@ export default {
                 map: name,
                 zlevel: -2,
                 zoom: 1.0,
-                layoutCenter: ['50%', '51.4%'],
+                layoutCenter: ['50%', '60.7%'],
                 layoutSize: '100%',
                 roam: false,
                 silent: true,
@@ -439,7 +439,7 @@ export default {
                 map: name,
                 zlevel: -3,
                 zoom: 1.0,
-                layoutCenter: ['50%', '52.4%'],
+                layoutCenter: ['50%', '61.7%'],
                 layoutSize: '100%',
                 roam: false,
                 silent: true,
@@ -458,7 +458,7 @@ export default {
               {
                 name: 'MAP',
                 type: 'map',
-                layoutCenter: ['50%', '50%'],
+                layoutCenter: ['50%', '60%'],
                 layoutSize: '100%',
                 mapType: name,
                 selectedMode: 'false', //是否允许选中多个区域
@@ -765,8 +765,8 @@ export default {
 <style scoped lang="scss">
 #container {
   width: 100vw;
-  // height: 100vh;
-  height: 1000px;
+  height: 100vh;
+  // height: 1000px;
   animation: bounce-down 7s linear infinite;
   &:hover {
     animation-play-state: paused;
