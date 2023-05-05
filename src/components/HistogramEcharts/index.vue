@@ -177,7 +177,7 @@ export default {
 
 <style lang="scss" scoped>
 #histogramEch {
-  height: calc((100vh - 80px) / 4);
+  height: calc((100vh / 4) - 80px);
   width: 100%;
 }
 </style>

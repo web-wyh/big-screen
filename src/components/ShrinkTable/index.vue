@@ -12,21 +12,19 @@ export default {
     return {
       dataList: [],
       chart: null,
-      dataArr: []
+      dataArr: [],
+      timerId: null
     }
   },
   created() {
     this.requestMax()
-  },
-
-  mounted() {
-    const timer = setInterval(() => {
-      clearInterval(timer)
+    this.timerId = setInterval(() => {
       this.dataArr = []
       this.dataList = []
       this.requestMax()
     }, 90000)
   },
+
   methods: {
     /* 初始化charts */
     initChart() {
@@ -42,7 +40,7 @@ export default {
       this.chart.setOption({
         color: ['#1994ff', '#f48483'],
         tooltip: {
-          show: false,
+          show: true,
           trigger: 'item'
         },
         legend: {
@@ -107,6 +105,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>

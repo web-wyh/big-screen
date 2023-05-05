@@ -5,7 +5,6 @@
 import * as echarts from 'echarts'
 import '../../chinaMap/china'
 import api from '../../http/api'
-import images from '../../assets/img/toolTipBg.png'
 export default {
   name: 'BigScreenScreen',
   data() {
@@ -112,14 +111,14 @@ export default {
       Province: [],
       //数据总数
       Length: 0,
-      //点位图片
-      img: images,
       //省份地图点位
       provincePointData: [],
       //所有城市点位
       allCityPointData: [],
       //下钻省份的城市点位
-      cityPointData: []
+      cityPointData: [],
+      //下钻省份名称
+      paramsName: ''
     }
   },
   created() {
@@ -146,7 +145,6 @@ export default {
   methods: {
     //请求地图数据
     requestMap() {
-      console.log(this.$store.state.token)
       this.$axios({
         methods: 'get',
         url: api.mapData,
@@ -154,7 +152,7 @@ export default {
           secret: 'fa6fd2501c030f5329d36bb60a13315c',
           time: 1681626074,
           access_token: sessionStorage.getItem('token')
-          // access_token: '7f994b8f0fdc46cc9f22b3ed09cbb570'
+          // access_token: '93359f0dd5fe43fb9cf2d64634b037d7'
         }
       })
         .then((res) => {
@@ -172,17 +170,47 @@ export default {
     },
     //加载图表
     loadMap(mapCode, name) {
-      console.log(this.intervalData, '1212122')
       this.$axios({
         methods: 'get',
         url: mapCode,
         params: {}
       })
         .then((res) => {
-          console.log(name)
           this.myChart = echarts.init(document.getElementById('container'))
           echarts.registerMap(name, res.data)
           // 点位
+          this.allCityPointData = []
+          //将省市区分
+          this.provinceData = []
+          this.allCityData = []
+          for (var i = 0; i < this.intervalData.length; i++) {
+            if (this.intervalData[i].level == '省') {
+              this.provinceData.push(this.intervalData[i])
+            } else {
+              this.allCityData.push(this.intervalData[i])
+            }
+          }
+          //将区父级追加到provinceData并且和相加
+          for (var c = 0; c < this.allCityData.length; c++) {
+            //将原始数据与城市数据的父级进行匹配
+            if (
+              this.provinceData.find(
+                (item) => item.name == this.allCityData[c].parent
+              )
+            ) {
+              //相同省份的数据value相加
+              let provinceDataList = this.provinceData.filter(
+                (item) => item.name == this.allCityData[c].parent
+              )
+              provinceDataList[0].value += this.allCityData[c].value
+            } else {
+              //省份数据添加市
+              this.provinceData.push({
+                name: this.allCityData[c].parent,
+                value: this.allCityData[c].value
+              })
+            }
+          }
           for (var i = 0; i < this.intervalData.length; i++) {
             for (var j = 0; j < res.data.features.length; j++) {
               if (res.data.features[0].properties.level == 'province') {
@@ -241,93 +269,28 @@ export default {
               }
             }
           }
-          //将省市区分
-          this.provinceData = []
-          this.allCityData = []
-          for (var i = 0; i < this.intervalData.length; i++) {
-            if (this.intervalData[i].level == '省') {
-              this.provinceData.push(this.intervalData[i])
-            } else {
-              this.allCityData.push(this.intervalData[i])
+          this.cityPointData = []
+          for (var i = 0; i < this.allCityPointData.length; i++) {
+            if (this.allCityPointData[i].parent == this.paramsName) {
+              let point = {}
+              point.name = this.allCityPointData[i].name
+              point.value = this.allCityPointData[i].value
+              this.cityPointData.push(point)
             }
           }
-          //将区父级追加到provinceData并且和相加
-          for (var c = 0; c < this.allCityData.length; c++) {
-            //将原始数据与城市数据的父级进行匹配
-            if (
-              this.provinceData.find(
-                (item) => item.name == this.allCityData[c].parent
-              )
-            ) {
-              //相同省份的数据value相加
-              let provinceDataList = this.provinceData.filter(
-                (item) => item.name == this.allCityData[c].parent
-              )
-              provinceDataList[0].value += this.allCityData[c].value
-              // 省份数据添加省份
-              // let provinceDataList = this.provinceData.filter((item) =>item.name == this.allCityData[c].name)
-              // provinceDataList[0].value += this.allCityData[c].value;
-            } else {
-              //省份数据添加市
-              this.provinceData.push({
-                name: this.allCityData[c].parent,
-                value: this.allCityData[c].value
-              })
-            }
-            // for (var i = 0; i < this.intervalData.length; i++) {
-            //   debugger
-            //   for (var j = 0; j < res.data.features.length; j++){
-            //       debugger
-            //         if(this.intervalData[i].name == res.data.features[j].properties.name){
-            //             debugger
-            //             this.intervalData[i].level = res.data.features[j].properties.level;
-            //             var geoCoord =[];
-            //             geoCoord.push(res.data.features[j].properties.centroid ? res.data.features[j].properties.centroid[0] : res.data.features[j].properties.center[0]);
-            //             geoCoord.push(res.data.features[j].properties.centroid ? res.data.features[j].properties.centroid[1] : res.data.features[j].properties.center[1]);
-            //             if (geoCoord && !this.provinceData.find((item) => item.name == this.intervalData[i].name)) {
-            //               this.provinceData.push({
-            //                     name: this.intervalData[i].name,
-            //                     value: geoCoord.concat(this.intervalData[i].value)
-            //                 });
-            //             }
-            //         }
 
-            //     }
-            // }
-            // for (var i = 0; i < this.intervalData.length; i++) {
-
-            //   for (var j = 0; j < res.data.features.length; j++){
-
-            //     if(this.intervalData[i].name == res.data.features[j].properties.name){
-            //       this.intervalData[i].level = res.data.features[j].properties.level;
-            //       let geoCoord = [];
-
-            //       geoCoord.push(res.data.features[j].properties.centroid[0])
-            //       geoCoord.push(res.data.features[j].properties.centroid[1])
-            //       if (geoCoord && !pointData.find((item) => item.name == this.intervalData[i].name)) {
-
-            //         pointData.push({
-            //           name: this.intervalData[i].name,
-            //           value: geoCoord.concat(this.intervalData[i].value)
-            //         });
-            //       }
-            //     }
-            //   }
-            // }
-            // this.dataLength = option.series[0].data.length;
-          }
-          // this.myChart.setOption(option);
           var option = {
             tooltip: {
               trigger: 'axis',
               axisPointer: {
+                show: false,
                 type: 'shadow'
               }
             },
             grid: {
               right: '10%',
-              top: 5,
-              bottom: '10%',
+              top: '25%',
+              bottom: '90%',
               left: '10%'
             },
             geo: [
@@ -523,19 +486,12 @@ export default {
                           if (this.intervalData[i].parent == params.name) {
                             return ''
                           }
+                          if (this.intervalData[i].name == params.name) {
+                            return ''
+                          }
                         }
                         return params.name
                       }
-                      // formatter: function (obj) {
-
-                      //   for (var i = 0; i < this.intervalData.length; i++){
-
-                      //     if(this.intervalData[i].name == obj.name){
-                      //         return '';
-                      //     }
-                      //   }
-                      //   return obj.name;
-                      // },
                     },
                     color: '#fff',
                     borderColor: '#32CBE0',
@@ -592,13 +548,20 @@ export default {
                     )
                   }
                 },
+                data:
+                  res.data.features[0].properties.level == 'province'
+                    ? this.provinceData
+                    : this.cityData,
+
                 tooltip: {
+                  show: true,
+                  transitionDuration: 0,
                   trigger: 'item',
                   backgroundColor: 'transparent',
                   borderColor: 'transparent',
                   extraCssText: 'z-index:100;color:#fff;',
-                  confine: true, //是否将 tooltip 框限制在图表的区域内
-                  formatter: function (params, ticket, callback) {
+                  confine: false, //是否将 tooltip 框限制在图表的区域内
+                  formatter: (params, ticket, callback) => {
                     //根据业务拓展要显示的内容
                     var res = ''
                     var name = params.name
@@ -606,16 +569,12 @@ export default {
                     res = `<div style="box-shadow: 0 0 10px #3BD9D9; padding: 10px; position: absolute; top: 0; left:0;  border-radius: 4px; border: 1px solid #04b9ff; background: linear-gradient(to bottom,  #51bfd4 0%,rgba(35,90,178,.8) 100%);">
                           <div style='color:#F4BD59; font-size: 14px;'>${name}</div>
                           <div style="display: flex; align-items: center;padding-top: 6px;">
-                          <div style="height: 6px; width: 6px; border-radius: 50%; background:#F4BD59; margin-right: 10px;"></div> <span style='color:#fff;font-size: 12px;margin-right: 20px;'>tooltip</span><span style="font-size: 12px;font-family: 'PangMenZhengDao'">${count}</span>
+                          <div style="height: 6px; width: 6px; border-radius: 50%; background:#F4BD59; margin-right: 10px;"></div> <span style='color:#fff;font-size: 12px;margin-right: 20px;'>在线人数</span><span style="font-size: 12px;font-family: 'PangMenZhengDao'">${count}</span>
                           </div>
                       </div>`
                     return res
                   }
-                },
-                data:
-                  res.data.features[0].properties.level == 'province'
-                    ? this.provinceData
-                    : this.cityData
+                }
               },
               // 点位
               {
@@ -651,48 +610,9 @@ export default {
                   res.data.features[0].properties.level == 'province'
                     ? this.provincePointData
                     : this.cityPointData
-              },
-              // 自定义点位图片
-              {
-                type: 'custom',
-                coordinateSystem: 'geo',
-                renderItem: (params, api) => {
-                  //具体实现自定义图标的方法
-                  return {
-                    type: 'image',
-                    style: {
-                      image: this.img, // 自定义的图片地址
-                      x:
-                        api.coord([
-                          this.provincePointData[params.dataIndex].value[0],
-                          this.provincePointData[params.dataIndex].value[1]
-                        ])[0] - 6, // 数据的设置
-                      y:
-                        api.coord([
-                          this.provincePointData[params.dataIndex].value[0],
-                          this.provincePointData[params.dataIndex].value[1]
-                        ])[1] - 34
-                    }
-                  }
-                },
-                zlevel: 10,
-                data:
-                  res.data.features[0].properties.level == 'province'
-                    ? this.provincePointData
-                    : this.cityPointData
               }
             ]
           }
-          for (var i = 0; i < this.allCityPointData.length; i++) {
-            if (this.allCityPointData[i].parent == this.name) {
-              let point = {}
-              point.name = this.allCityPointData[i].name
-              point.value = this.allCityPointData[i].value
-              this.cityPointData.push(point)
-            }
-          }
-          option.series[1].data = this.cityPointData
-          option.series[2].data = this.cityPointData
           this.myChart.setOption(option)
           this.dataLength = option.series[0].data.length
           //如果为省级数据，则开启定时器
@@ -703,7 +623,9 @@ export default {
             this.interval()
           }
           //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
+          this.myChart.off('click')
           this.myChart.on('click', (params) => {
+            this.paramsName = params.name
             this.myChart.off('click')
             //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
             this.timeFn = setTimeout(() => {
@@ -716,32 +638,20 @@ export default {
               //清除定时器
               clearInterval(this.timer)
             }, 250)
-            option.series[0].data = this.cityData
-            this.qq = setTimeout(() => {
-              this.cityData = []
-              this.cityPointData = []
-              for (var i = 0; i < this.allCityData.length; i++) {
-                if (this.allCityData[i].parent == params.name) {
-                  let city = {}
-                  city.name = this.allCityData[i].name
-                  city.value = this.allCityData[i].value
-                  this.cityData.push(city)
-                }
+            this.cityData = []
+            this.cityPointData = []
+            for (var i = 0; i < this.allCityData.length; i++) {
+              if (this.allCityData[i].parent == params.name) {
+                let city = {}
+                city.name = this.allCityData[i].name
+                city.value = this.allCityData[i].value
+                this.cityData.push(city)
               }
-              debugger
-              // for (var i = 0; i < this.allCityPointData.length; i++) {
-              //   if (this.allCityPointData[i].parent == params.name) {
-              //     let point = {}
-              //     point.name = this.allCityPointData[i].name
-              //     point.value = this.allCityPointData[i].value
-              //     this.cityPointData.push(point)
-              //   }
-              // }
-              // option.series[1].data = this.cityPointData
-              // option.series[2].data = this.cityPointData
-            }, 4000)
+            }
+            option.series[0].data = this.cityData
           })
           // 绑定双击事件，返回全国地图
+          this.myChart.off('dblclick')
           this.myChart.on('dblclick', (params) => {
             //当双击事件发生时，清除单击事件，仅响应双击事件
             this.myChart.off('click')
@@ -756,17 +666,17 @@ export default {
             clearInterval(this.timer)
             this.myChart.dispatchAction({
               type: 'downplay',
-              seriesIndex: 0
+              seriesIndex: 2
             })
             this.myChart.dispatchAction({
               type: 'highlight',
-              seriesIndex: 0,
-              dataIndex: params.dataIndex
+              seriesIndex: 2,
+              dataIndex: 2
             })
             this.myChart.dispatchAction({
               type: 'showTip',
-              seriesIndex: 0,
-              dataIndex: params.dataIndex
+              seriesIndex: 2,
+              dataIndex: 2
             })
           })
           //鼠标划出，启动定时器

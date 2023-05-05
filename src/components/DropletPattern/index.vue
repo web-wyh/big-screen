@@ -98,14 +98,13 @@ export default {
 
   data() {
     return {
-      dataList: []
+      dataList: [],
+      timerId: null
     }
   },
   created() {
     this.requestShuidi()
-  },
-  mounted() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.dataList = []
       this.requestShuidi()
     }, 90000)
@@ -155,6 +154,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>

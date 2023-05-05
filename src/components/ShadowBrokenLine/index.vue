@@ -179,7 +179,7 @@ export default {
 <style lang="scss" scoped>
 #shadowBrokenLine {
   width: 450px;
-  height: calc((100vh - 80px) / 4);
+  height: calc((100vh / 4) - 80px);
   z-index: 9999;
 }
 </style>

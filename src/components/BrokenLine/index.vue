@@ -15,15 +15,14 @@ export default {
       chart: null,
       chartName: [],
       chartData: [],
-      chartData1: []
+      chartData1: [],
+      timerId: null
     }
   },
 
   created() {
     this.requestActive()
-  },
-  mounted() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.chartData = []
       this.chartName = []
       this.chartData1 = []
@@ -243,6 +242,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>

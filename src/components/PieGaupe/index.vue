@@ -12,19 +12,19 @@ export default {
     return {
       dataList: [],
       chart: null,
-      dataArr: []
+      dataArr: [],
+      timerId: null
     }
   },
   created() {
     this.requestPieData()
-  },
-  mounted() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.dataArr = []
       this.dataList = []
       this.requestPieData()
     }, 90000)
   },
+
   methods: {
     /* 初始化charts */
     initChart() {
@@ -108,13 +108,16 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
 
 <style scoped lang="scss">
 #pieGaupe {
-  height: calc(100vh / 4 - 100px);
+  height: calc(100vh / 4 - 80px);
   width: 460px;
 }
 </style>

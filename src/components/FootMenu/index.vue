@@ -121,23 +121,89 @@ export default {
       name2: {},
       name3: {},
       name1: {},
-      name: {}
+      name: {},
+      timerId: null
     }
   },
   created() {
     this.getRequest()
+    this.timerId = setInterval(() => {
+      this.config = {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+      this.config1 = {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+      this.config2 = {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+      this.config3 = {
+        data: [
+          ['告警名称'],
+          ['告警描述'],
+          ['ID'],
+          ['告警来源'],
+          ['探针来源'],
+          ['告警分类'],
+          ['告警级别'],
+          ['告警状态']
+        ],
+        rowNum: 1,
+        oddRowBGC: 'rgba(17, 28, 53, 0.6)',
+        evenRowBGC: 'rgba(5, 36, 84, 0.6)',
+        waitTime: 2000,
+        align: ['center', 'center']
+      }
+      this.data3 = []
+      this.name2 = {}
+      this.name3 = {}
+      this.name1 = {}
+      this.name = {}
+      this.getRequest()
+    }, 90000)
   },
-  mounted() {
-    // setInterval(() => {
-    //   this.data3 = []
-    //   this.name2 = {}
-    //   this.name3 = {}
-    //   this.name1 = {}
-    //   this.name = {}
-    //   this.getRequest()
-    // }, 90000)
-  },
-
   methods: {
     getRequest() {
       this.$axios({
@@ -295,6 +361,9 @@ export default {
         align: ['center', 'center']
       }
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>

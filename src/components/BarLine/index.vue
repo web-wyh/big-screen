@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div id="Bar" @mouseover="clearTimer" @mouseout="timechartes"></div>
+    <div id="Bar"></div>
+    <!--  @mouseover="clearTimer" @mouseout="timechartes" -->
   </div>
 </template>
 
@@ -15,11 +16,17 @@ export default {
       chartName: [],
       myChart: '',
       max: '',
-      timer: null
+      timer: null,
+      timerId: null
     }
   },
   created() {
     this.reuqestBar()
+    this.timerId = setInterval(() => {
+      this.chartData = []
+      this.chartName = []
+      this.reuqestBar()
+    }, 90000)
   },
   mounted() {},
 
@@ -187,7 +194,7 @@ export default {
           }
         ]
       })
-      this.timechartes()
+      // this.timechartes()
     },
     clearTimer() {
       clearInterval(this.timer)
@@ -267,6 +274,9 @@ export default {
           console.log(err)
         })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
