@@ -69,7 +69,7 @@ export default {
     ...mapActions(['setToken']),
     submitForm() {
       const pws = md5(this.ruleForm.password)
-      console.log(this.ruleForm.password, pws)
+      // console.log(this.ruleForm.password, pws)
       this.$axios({
         method: 'post',
         url: api.map,

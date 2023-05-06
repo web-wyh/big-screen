@@ -11,48 +11,40 @@ export default {
     return {
       //各省份的地图json文件
       provinces: {
-        上海市: 'https://geo.datav.aliyun.com/areas_v3/bound/310000_full.json',
-        河北省: 'https://geo.datav.aliyun.com/areas_v3/bound/130000_full.json',
-        山西省: 'https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json',
-        内蒙古自治区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/150000_full.json',
-        辽宁省: 'https://geo.datav.aliyun.com/areas_v3/bound/210000_full.json',
-        吉林省: 'https://geo.datav.aliyun.com/areas_v3/bound/220000_full.json',
-        黑龙江省:
-          'https://geo.datav.aliyun.com/areas_v3/bound/230000_full.json',
-        江苏省: 'https://geo.datav.aliyun.com/areas_v3/bound/320000_full.json',
-        浙江省: 'https://geo.datav.aliyun.com/areas_v3/bound/330000_full.json',
-        安徽省: 'https://geo.datav.aliyun.com/areas_v3/bound/340000_full.json',
-        福建省: 'https://geo.datav.aliyun.com/areas_v3/bound/350000_full.json',
-        江西省: 'https://geo.datav.aliyun.com/areas_v3/bound/360000_full.json',
-        山东省: 'https://geo.datav.aliyun.com/areas_v3/bound/370000_full.json',
-        河南省: 'https://geo.datav.aliyun.com/areas_v3/bound/410000_full.json',
-        湖北省: 'https://geo.datav.aliyun.com/areas_v3/bound/420000_full.json',
-        湖南省: 'https://geo.datav.aliyun.com/areas_v3/bound/430000_full.json',
-        广东省: 'https://geo.datav.aliyun.com/areas_v3/bound/440000_full.json',
-        广西壮族自治区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/450000_full.json',
-        海南省: 'https://geo.datav.aliyun.com/areas_v3/bound/460000_full.json',
-        四川省: 'https://geo.datav.aliyun.com/areas_v3/bound/510000_full.json',
-        贵州省: 'https://geo.datav.aliyun.com/areas_v3/bound/520000_full.json',
-        云南省: 'https://geo.datav.aliyun.com/areas_v3/bound/530000_full.json',
-        西藏自治区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/540000_full.json',
-        陕西省: 'https://geo.datav.aliyun.com/areas_v3/bound/610000_full.json',
-        甘肃省: 'https://geo.datav.aliyun.com/areas_v3/bound/620000_full.json',
-        青海省: 'https://geo.datav.aliyun.com/areas_v3/bound/630000_full.json',
-        宁夏回族自治区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/640000_full.json',
-        新疆维吾尔自治区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/650000_full.json',
-        北京市: 'https://geo.datav.aliyun.com/areas_v3/bound/110000_full.json',
-        天津市: 'https://geo.datav.aliyun.com/areas_v3/bound/120000_full.json',
-        重庆市: 'https://geo.datav.aliyun.com/areas_v3/bound/500000_full.json',
-        香港特别行政区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/810000_full.json',
-        澳门特别行政区:
-          'https://geo.datav.aliyun.com/areas_v3/bound/820000_full.json',
-        台湾省: 'https://geo.datav.aliyun.com/areas_v3/bound/710000.json'
+        上海市: '/json/310000_full.json',
+        河北省: '/json/130000_full.json',
+        山西省: '/json/140000_full.json',
+        内蒙古自治区: '/json/150000_full.json',
+        辽宁省: '/json/210000_full.json',
+        吉林省: '/json/220000_full.json',
+        黑龙江省: '/json/230000_full.json',
+        江苏省: '/json/320000_full.json',
+        浙江省: '/json/330000_full.json',
+        安徽省: '/json/340000_full.json',
+        福建省: '/json/350000_full.json',
+        江西省: '/json/360000_full.json',
+        山东省: '/json/370000_full.json',
+        河南省: '/json/410000_full.json',
+        湖北省: '/json/420000_full.json',
+        湖南省: '/json/430000_full.json',
+        广东省: '/json/440000_full.json',
+        广西壮族自治区: '/json/450000_full.json',
+        海南省: '/json/460000_full.json',
+        四川省: '/json/510000_full.json',
+        贵州省: '/json/520000_full.json',
+        云南省: '/json/530000_full.json',
+        西藏自治区: '/json/540000_full.json',
+        陕西省: '/json/610000_full.json',
+        甘肃省: '/json/620000_full.json',
+        青海省: '/json/630000_full.json',
+        宁夏回族自治区: '/json/640000_full.json',
+        新疆维吾尔自治区: '/json/650000_full.json',
+        北京市: '/json/110000_full.json',
+        天津市: '/json/120000_full.json',
+        重庆市: '/json/500000_full.json',
+        香港特别行政区: '/json/810000_full.json',
+        澳门特别行政区: '/json/820000_full.json',
+        台湾省: '/json/710000_full.json'
       },
       //请求的数据
       intervalData: [],
@@ -118,11 +110,19 @@ export default {
       //下钻省份的城市点位
       cityPointData: [],
       //下钻省份名称
-      paramsName: ''
+      paramsName: '',
+      //每90s请求一次数据获取最新数据
+      timerId: null
     }
   },
   created() {
     this.requestMap()
+    this.timerId = setInterval(() => {
+      this.Province = []
+      this.intervalData = []
+      this.Result = []
+      this.requestMap()
+    }, 90000)
   },
   mounted() {},
   watch: {
@@ -132,10 +132,7 @@ export default {
         if (n.length && n.length == this.Length) {
           //监听地图数据请求完成
           this.intervalData = this.Province
-          this.loadMap(
-            'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
-            'china'
-          )
+          this.loadMap('/json/100000_full.json', '全国')
         }
       },
       deep: true,
@@ -161,6 +158,8 @@ export default {
             name: Object.keys(obj)[0],
             value: Object.values(obj)[0]
           }))
+          console.log(this.Result)
+
           this.Length = this.Result.length
           this.compileCode(this.Result)
         })
@@ -170,6 +169,7 @@ export default {
     },
     //加载图表
     loadMap(mapCode, name) {
+      // debugger
       this.$axios({
         methods: 'get',
         url: mapCode,
@@ -625,6 +625,31 @@ export default {
           //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
           this.myChart.off('click')
           this.myChart.on('click', (params) => {
+            clearTimeout(this.timeFn)
+            // if (params.name !== '台湾省') {
+            //   this.paramsName = params.name
+            //   this.myChart.off('click')
+            //   //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
+            //   this.timeFn = setTimeout(() => {
+            //     let name = params.name //地区name
+            //     let mapCode = this.provinces[name] //地区的json数据
+            //     if (!mapCode) {
+            //       return
+            //     }
+            //     this.loadMap(mapCode, name)
+            //     //清除定时器
+            //     clearInterval(this.timer)
+            //   }, 250)
+            // } else {
+            //   this.$message({
+            //     message: '暂时没有台湾省的数据！',
+            //     type: 'warning'
+            //   })
+            // }
+
+            if (params.name === '台湾省') {
+              this.provincePointData = []
+            }
             this.paramsName = params.name
             this.myChart.off('click')
             //由于单击事件和双击事件冲突，故单击的响应事件延迟250毫秒执行
@@ -638,6 +663,7 @@ export default {
               //清除定时器
               clearInterval(this.timer)
             }, 250)
+
             this.cityData = []
             this.cityPointData = []
             for (var i = 0; i < this.allCityData.length; i++) {
@@ -653,13 +679,12 @@ export default {
           // 绑定双击事件，返回全国地图
           this.myChart.off('dblclick')
           this.myChart.on('dblclick', (params) => {
+            clearTimeout(this.timeFn)
+            // debugger
             //当双击事件发生时，清除单击事件，仅响应双击事件
             this.myChart.off('click')
             //返回全国地图
-            this.loadMap(
-              'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
-              'china'
-            )
+            this.loadMap('/json/100000_full.json', '全国')
           })
           //鼠标划入清除定时器，并高亮模块
           this.myChart.on('mouseover', (params) => {
@@ -759,6 +784,9 @@ export default {
           })
       })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
   }
 }
 </script>
