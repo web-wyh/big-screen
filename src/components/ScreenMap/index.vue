@@ -122,7 +122,7 @@ export default {
       this.intervalData = []
       this.Result = []
       this.requestMap()
-    }, 90000)
+    }, 3600000)
   },
   mounted() {},
   watch: {
@@ -299,8 +299,8 @@ export default {
                 zlevel: -1,
                 zoom: 1.0,
                 silent: true,
-                layoutCenter: ['50%', '60%'],
-                layoutSize: '100%',
+                layoutCenter: ['50%', '55%'],
+                layoutSize: '90%',
                 roam: false,
                 itemStyle: {
                   normal: {
@@ -332,8 +332,8 @@ export default {
                 show: true,
                 map: name,
                 zoom: 1.0,
-                layoutCenter: ['50%', '60%'],
-                layoutSize: '100%',
+                layoutCenter: ['50%', '55%'],
+                layoutSize: '90%',
                 label: {
                   normal: {
                     //静态的时候展示样式
@@ -420,8 +420,8 @@ export default {
                 map: name,
                 zlevel: -2,
                 zoom: 1.0,
-                layoutCenter: ['50%', '60.7%'],
-                layoutSize: '100%',
+                layoutCenter: ['50%', '55.7%'],
+                layoutSize: '90%',
                 roam: false,
                 silent: true,
                 itemStyle: {
@@ -439,8 +439,8 @@ export default {
                 map: name,
                 zlevel: -3,
                 zoom: 1.0,
-                layoutCenter: ['50%', '61.7%'],
-                layoutSize: '100%',
+                layoutCenter: ['50%', '56.7%'],
+                layoutSize: '90%',
                 roam: false,
                 silent: true,
                 itemStyle: {
@@ -458,8 +458,8 @@ export default {
               {
                 name: 'MAP',
                 type: 'map',
-                layoutCenter: ['50%', '60%'],
-                layoutSize: '100%',
+                layoutCenter: ['50%', '55%'],
+                layoutSize: '90%',
                 mapType: name,
                 selectedMode: 'false', //是否允许选中多个区域
                 label: {
@@ -625,6 +625,8 @@ export default {
           //单击切换到省级地图，当mapCode有值,说明可以切换到下级地图
           this.myChart.off('click')
           this.myChart.on('click', (params) => {
+            console.log(option.geo)
+
             clearTimeout(this.timeFn)
             // if (params.name !== '台湾省') {
             //   this.paramsName = params.name
@@ -793,23 +795,11 @@ export default {
 <style scoped lang="scss">
 #container {
   width: 100vw;
-  height: 100vh;
+  height: 1000px;
   // height: 1000px;
-  animation: bounce-down 7s linear infinite;
-  &:hover {
-    animation-play-state: paused;
-  }
-}
-@keyframes bounce-down {
-  25% {
-    transform: translateY(-15px);
-  }
-  50%,
-  100% {
-    transform: translateY(0);
-  }
-  75% {
-    transform: translateY(15px);
-  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 </style>

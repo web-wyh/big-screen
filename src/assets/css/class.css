@@ -7,7 +7,7 @@ body,
   width: 100vw;
   height: 100vh;
   /**/
-  background: url(../img/bg.jpeg) no-repeat;
+  background: url(../img/bgScreen.jpg) no-repeat;
   background-size: cover;
   /* background: #012546; */
 }

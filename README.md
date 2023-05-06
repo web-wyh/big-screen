@@ -1,19 +1,25 @@
-# bmdstudios-ms-client
+# 家聊大屏项目
 
-## Project setup
+## 编程工具
+
+```
+vsCode
+```
+
+## 下载项目所需依赖
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 本地跑项目
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包命令
+
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -48,7 +48,7 @@
         </div>
 
         <div style="width: 100%; height: auto">
-          <histogram-echarts></histogram-echarts>
+          <!-- <histogram-echarts></histogram-echarts> -->
         </div>
       </div>
     </dv-border-box-8>
@@ -72,8 +72,8 @@
         </div>
 
         <div style="width: 100%; height: auto; display: flex">
-          <div style="width: 50%"><broken-line1></broken-line1></div>
-          <div style="width: 50%"><broken-line2></broken-line2></div>
+          <!-- <div style="width: 50%"><broken-line1></broken-line1></div>
+            <div style="width: 50%"><broken-line2></broken-line2></div> -->
         </div>
       </div>
     </dv-border-box-8>
