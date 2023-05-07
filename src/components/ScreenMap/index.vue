@@ -569,7 +569,7 @@ export default {
                     res = `<div style="box-shadow: 0 0 10px #3BD9D9; padding: 10px; position: absolute; top: 0; left:0;  border-radius: 4px; border: 1px solid #04b9ff; background: linear-gradient(to bottom,  #51bfd4 0%,rgba(35,90,178,.8) 100%);">
                           <div style='color:#F4BD59; font-size: 14px;'>${name}</div>
                           <div style="display: flex; align-items: center;padding-top: 6px;">
-                          <div style="height: 6px; width: 6px; border-radius: 50%; background:#F4BD59; margin-right: 10px;"></div> <span style='color:#fff;font-size: 12px;margin-right: 20px;'>在线人数</span><span style="font-size: 12px;font-family: 'PangMenZhengDao'">${count}</span>
+                          <div style="height: 6px; width: 6px; border-radius: 50%; background:#F4BD59; margin-right: 10px;"></div> <span style='color:#fff;font-size: 12px;margin-right: 20px;'>注册人数</span><span style="font-size: 12px;font-family: 'PangMenZhengDao'">${count}</span>
                           </div>
                       </div>`
                     return res
